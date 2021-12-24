@@ -1,0 +1,3 @@
+Ime		Prezime		Username	Sifra		Email				Broj telefona	Spol	Kod
+Test		Proba		admin		sifra999	mail20@size.ba			999/888-777	musko	1234
+Prvi		Drugi		treci		treci333	admin@gmail.com			345/654-523	zensko	5555

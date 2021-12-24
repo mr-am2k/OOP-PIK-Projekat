@@ -1,6 +1,9 @@
 #include <iostream>
-#include "Osoba.h"
+#include "Korisnik.h"
+#include "Admin.h"
 int main()
 {
-	Osoba o;
+
+	return 0;
+
 }

@@ -1,0 +1,8 @@
+Ime		Prezime		Username	Sifra		Email				Broj telefona	Spol	Aktivni oglasi	Zavrseni oglasi
+Ajdin		Bukvic		toreno		Sifra123!	ajdin.bukvic.20@size.ba		123/456-789	musko		5		7
+Neko		Neki		nesto		Sifra123!	lol@gmail.com			333/444/555	zensko		0		3
+Novi		Korisnik	pik		PIK123pik#	pik.pik@hotmail.com		345/534-423	musko		0		0
+ime		prezime		username	sifrA1__	a@a.a				111/235-986	zensko		0		0
+aaaaa		bbbb		cccccc		ABCabc123!	vvv.ggg@hhh.ddd			645/423-778	musko		0		0
+zzz		uuu		rrr		ttt321P#	arer.tt@gfd.zzu			432/543-177	zensko		0		0
+qqqq		rrrrrrr		ggggg		aaaA5555!!!	fffv@b.c			124/556-779	musko		0		0

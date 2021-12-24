@@ -1,61 +1,15 @@
 #include "Osoba.h"
 #include <iostream>
+#include <conio.h>
 Osoba::Osoba()
 {
 	this->ime = "Niko";
 	this->prezime = "Kovac";
-	this->sifra = "deagle";
 	this->username = "n1ko";
+	this->sifra = "deagle";
 	this->email = "nikokovac@gmail.com";
 	this->brojTelefona = "061123456";
-	this->spol = "musko";
-}
-
-void Osoba::setIme()
-{
-	std::cout << "Unesite vase ime: ";
-	std::cin >> this->ime;
-
-}
-
-void Osoba::setPrezime()
-{
-	std::cout << "Unesite vase prezime: ";
-	std::cin >> this->prezime;
-}
-
-void Osoba::setSifra()
-{
-	std::cout << "Unesite sifru: ";
-	std::cin >> this->sifra;
-}
-
-void Osoba::setUsername()
-{
-	std::cout << "Unesite username: ";
-	std::cin >> this->username;
-}
-
-void Osoba::setEmail()
-{
-	std::cout << "Unesite email: ";
-	std::cin >> this->email;
-}
-
-void Osoba::setBrojTelefona()
-{
-	std::cout << "Unesite broj telefona: ";
-	std::cin >> this->brojTelefona;
-}
-
-void Osoba::setSpol()
-{
-	do
-	{
-		std::cout << "Unesite spol (musko/zensko): ";
-		std::cin >> this->spol;
-		
-	} while (this->spol != "musko" || this->spol != "zensko");
+	this->spol = musko;
 }
 
 const std::string Osoba::getIme() const
@@ -68,14 +22,14 @@ const std::string Osoba::getPrezime() const
 	return this->prezime;
 }
 
-const std::string Osoba::getSifra() const
-{
-	return this->sifra;
-}
-
 const std::string Osoba::getUsername() const
 {
 	return this->username;
+}
+
+const std::string Osoba::getSifra() const
+{
+	return this->sifra;
 }
 
 const std::string Osoba::getEmail() const
@@ -88,8 +42,42 @@ const std::string Osoba::getBrojTelefona() const
 	return this->brojTelefona;
 }
 
-const std::string Osoba::getSpol() const
+const Spol Osoba::getSpol() const
 {
 	return this->spol;
 }
+
+const std::string Osoba::getSpolString() const
+{
+	switch (this->spol) {
+	case 0:
+		return "musko";
+	case 1:
+		return "zensko";
+	default:
+		return "[GRESKA]";
+	}
+}
+
+std::string Osoba::skrivenaSifra(std::string s, char znak='a')
+{
+    sifra.clear();
+    while (znak = _getch()) {
+        if (znak == 13) { //ako se pritisne enter vraca unesenu sifru
+            return sifra;
+        }
+        else if (znak == 8 && sifra.size() != 0) { //ako se pritisne backspace brise zadnji karakter
+            sifra.erase(sifra.size() - 1);
+            std::cout << "\b \b"; //unos se vraca za jedno mjesto unazad
+            continue;
+        }
+        else if (znak == 8 && sifra.size() == 0) { //ako se pritisne backspace kad nema nikakvog unosa
+            continue;
+        }
+        sifra += znak;
+        std::cout << "*";
+    }
+}
+
+
 

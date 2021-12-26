@@ -4,7 +4,7 @@
 int main()
 {
 	Korisnik k;
-	std::cin>>k;
+	std::cout<<k;
 	return 0;
 
 }

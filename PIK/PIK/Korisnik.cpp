@@ -1,6 +1,6 @@
 #include "Korisnik.h"
 #include <iostream>
-#include <regex>
+#include <regex> //Biblioteka regex je potreba kako bi mogli koristiti regex prilikom unosa sifre/maila/broja telefona. Na ovaj nacin nema potrebe za kompleksnom logikom da specifisemo nacin unosa nekog od spomenutih atributa
 #include <fstream>
 #include <Windows.h>
 std::vector<Korisnik> korisnici;
@@ -31,7 +31,7 @@ void Korisnik::setUsername()
 		std::cout << "Unesite username: ";
 		std::cin >> this->username;
 		for (int i = 0; i < korisnici.size(); i++) {
-			if (this->username == korisnici[i].getUsername()) {
+			if (this->username == korisnici[i].getUsername()) { //Iskljucujemo mogucnost da se korisnik registruje sa username-om koji vec postoji
 				std::cout << "[GRESKA]: Username vec postoji!\n";
 				postoji = true;
 				break;
@@ -46,7 +46,7 @@ void Korisnik::setSifra()
 	const std::regex sifraPravilo("(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#\$%\^&_\*\+\-\.\,])(?=.{8,})");
 	do {
 		std::cout << "Unesite sifru: ";
-		this->sifra = this->skrivenaSifra(this->sifra, znak);
+		this->sifra = this->skrivenaSifra(this->sifra, znak); //Pozivom metode skrivena sifra omoguciti cemo prilikom unosa sifre da se ispisuje specijalni karakter
 		std::cout << std::endl;
 		if (!regex_search(this->sifra, sifraPravilo)) std::cout << "[GRESKA]: Sifra mora sadrzavati minimalno 8 karaktera!\n[GRESKA]: Mora imati mala i velika slova, broj i specijalni karakter.\n";
 	} while (!regex_search(this->sifra, sifraPravilo));
@@ -176,25 +176,46 @@ void Korisnik::ucitajKorisnike()
 	}
 }
 
-std::ostream& operator<<(std::ostream& izlaz, Korisnik& k)
+std::ostream& operator<<(std::ostream& izlaz, Korisnik& k) //Operator << ispisuje sve registrovane korisnike
 {
-	izlaz << "--------------------------------------------------------------\n";
-	izlaz << "\t\t*** INFORMACIJE O KORISNIKU ***\n";
-	izlaz << "--------------------------------------------------------------\n";
-	izlaz << "Ime: " << k.ime << std::endl;
-	izlaz << "Prezime: " << k.prezime << std::endl;
-	izlaz << "Username: " << k.username << std::endl;
-	izlaz << "Sifra: " << k.sifra << std::endl;
-	izlaz << "Email: " << k.email << std::endl;
-	izlaz << "Broj telefona: " << k.brojTelefona << std::endl;
-	izlaz << "Spol: " << k.getSpolString() << std::endl;
-	izlaz << "Broj aktivnih oglasa: " << k.brAktivnihOglasa << std::endl;
-	izlaz << "Broj zavrsenih oglasa: " << k.brZavrsenihOglasa << std::endl;
-	izlaz << "--------------------------------------------------------------\n";
+	try {
+		korisnici.clear();
+		std::ifstream ulaz("korisnici.txt");
+		if (ulaz.is_open()) {
+			std::shared_ptr<Korisnik> temp = std::make_shared<Korisnik>();
+			std::string linijaInfo;
+			std::string spolString;
+			std::getline(ulaz, linijaInfo);
+			while (ulaz >> temp->ime >> temp->prezime >> temp->username >> temp->sifra >> temp->email >> temp->brojTelefona >> spolString >> temp->brAktivnihOglasa >> temp->brZavrsenihOglasa) {
+				izlaz << "--------------------------------------------------------------\n";
+				izlaz << "\t\t*** INFORMACIJE O KORISNIKU ***\n";
+				izlaz << "--------------------------------------------------------------\n";
+				izlaz << "Ime: " << temp->ime << std::endl;
+				izlaz << "Prezime: " << temp->prezime << std::endl;
+				izlaz << "Username: " << temp->username << std::endl;
+				izlaz << "Sifra: " << temp->sifra << std::endl;
+				izlaz << "Email: " << temp->email << std::endl;
+				izlaz << "Broj telefona: " << temp->brojTelefona << std::endl;
+				izlaz << "Spol: " << temp->getSpolString() << std::endl;
+				izlaz << "Broj aktivnih oglasa: " << temp->brAktivnihOglasa << std::endl;
+				izlaz << "Broj zavrsenih oglasa: " << temp->brZavrsenihOglasa << std::endl;
+				izlaz << "--------------------------------------------------------------\n";
+			}
+			ulaz.close();
+		}
+		else {
+			throw "[IZUZETAK]: Otvaranje datoteke nije uspjelo!\n";
+		}
+	}
+	catch (const char* greska) {
+		std::cout << greska;
+		exit(0);
+	}
+
 	return izlaz;
 }
 
-std::istream& operator>>(std::istream& ulaz, Korisnik& k)
+std::istream& operator>>(std::istream& ulaz, Korisnik& k) //Opretaor >> sluzi za registraciju novog korisnika
 {
 	std::cout << "--------------------------------------------------------------\n";
 	std::cout << "\t\t*** REGISTRACIJA KORISNIKA ***\n";

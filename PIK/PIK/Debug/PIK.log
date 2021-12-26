@@ -1,14 +1,12 @@
 ﻿  Korisnik.cpp
-C:\Users\muame\OneDrive\Desktop\PIK\PIK\PIK\Korisnik.cpp(33,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\muame\OneDrive\Desktop\PIK\PIK\PIK\Korisnik.cpp(46,32): warning C4129: '$': unrecognized character escape sequence
-C:\Users\muame\OneDrive\Desktop\PIK\PIK\PIK\Korisnik.cpp(46,32): warning C4129: '^': unrecognized character escape sequence
-C:\Users\muame\OneDrive\Desktop\PIK\PIK\PIK\Korisnik.cpp(46,32): warning C4129: '*': unrecognized character escape sequence
-C:\Users\muame\OneDrive\Desktop\PIK\PIK\PIK\Korisnik.cpp(46,32): warning C4129: '+': unrecognized character escape sequence
-C:\Users\muame\OneDrive\Desktop\PIK\PIK\PIK\Korisnik.cpp(46,32): warning C4129: '-': unrecognized character escape sequence
-C:\Users\muame\OneDrive\Desktop\PIK\PIK\PIK\Korisnik.cpp(46,32): warning C4129: '.': unrecognized character escape sequence
-C:\Users\muame\OneDrive\Desktop\PIK\PIK\PIK\Korisnik.cpp(46,32): warning C4129: ',': unrecognized character escape sequence
-C:\Users\muame\OneDrive\Desktop\PIK\PIK\PIK\Korisnik.cpp(114,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\muame\OneDrive\Desktop\PIK\PIK\PIK\Korisnik.cpp(134,21): warning C4018: '<': signed/unsigned mismatch
-  main.cpp
-  Generating Code...
-  PIK.vcxproj -> C:\Users\muame\OneDrive\Desktop\PIK\PIK\Debug\PIK.exe
+C:\Users\muame\OneDrive\Desktop\PIK\PIK\Korisnik.cpp(33,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\muame\OneDrive\Desktop\PIK\PIK\Korisnik.cpp(46,32): warning C4129: '$': unrecognized character escape sequence
+C:\Users\muame\OneDrive\Desktop\PIK\PIK\Korisnik.cpp(46,32): warning C4129: '^': unrecognized character escape sequence
+C:\Users\muame\OneDrive\Desktop\PIK\PIK\Korisnik.cpp(46,32): warning C4129: '*': unrecognized character escape sequence
+C:\Users\muame\OneDrive\Desktop\PIK\PIK\Korisnik.cpp(46,32): warning C4129: '+': unrecognized character escape sequence
+C:\Users\muame\OneDrive\Desktop\PIK\PIK\Korisnik.cpp(46,32): warning C4129: '-': unrecognized character escape sequence
+C:\Users\muame\OneDrive\Desktop\PIK\PIK\Korisnik.cpp(46,32): warning C4129: '.': unrecognized character escape sequence
+C:\Users\muame\OneDrive\Desktop\PIK\PIK\Korisnik.cpp(46,32): warning C4129: ',': unrecognized character escape sequence
+C:\Users\muame\OneDrive\Desktop\PIK\PIK\Korisnik.cpp(114,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\muame\OneDrive\Desktop\PIK\PIK\Korisnik.cpp(134,21): warning C4018: '<': signed/unsigned mismatch
+  PIK.vcxproj -> C:\Users\muame\OneDrive\Desktop\PIK\Debug\PIK.exe

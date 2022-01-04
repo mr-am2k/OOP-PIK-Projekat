@@ -121,12 +121,12 @@ void Tehnika::unosOglasa()
         std::ofstream izlaz("tehnika.txt", std::ios::app);
         if (izlaz.is_open()) {
             izlaz << this->getID() << "\t";
-            izlaz << this->getVrstaTehnike() << "\n";
+            izlaz << this->getVrstaTehnike() << "\t";
             izlaz << this->getRam()<< "\t";
             izlaz << this->getPohrana() << "\t";
             izlaz << this->getProcesor() << "\t";
             izlaz << this->getProizvodjac()<< "\t";
-            izlaz << this->getOperativniSistem() << "\t";
+            izlaz << this->getOperativniSistem() << "\n";
             izlaz.close();
         }
         else {

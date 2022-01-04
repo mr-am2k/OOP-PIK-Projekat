@@ -1,10 +1,14 @@
 #include <iostream>
 #include "Korisnik.h"
 #include "Admin.h"
+#include "Oglas.h"
 int main()
 {
 	Korisnik k;
-	std::cout<<k;
+	if (k.prijava()) {
+		k.dodajOglas();
+	}
+
 	return 0;
 
 }

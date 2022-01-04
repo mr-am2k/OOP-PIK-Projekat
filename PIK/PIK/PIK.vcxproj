@@ -142,16 +142,28 @@
     <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Korisnik.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Nekretnina.cpp" />
+    <ClCompile Include="Oglas.cpp" />
     <ClCompile Include="Osoba.cpp" />
+    <ClCompile Include="Tehnika.cpp" />
+    <ClCompile Include="Vozilo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h" />
     <ClInclude Include="Korisnik.h" />
+    <ClInclude Include="Nekretnina.h" />
+    <ClInclude Include="Oglas.h" />
     <ClInclude Include="Osoba.h" />
+    <ClInclude Include="Tehnika.h" />
+    <ClInclude Include="Vozilo.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="admini.txt" />
     <Text Include="korisnici.txt" />
+    <Text Include="nekretnine.txt" />
+    <Text Include="oglasi.txt" />
+    <Text Include="tehnika.txt" />
+    <Text Include="vozila.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

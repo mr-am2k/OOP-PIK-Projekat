@@ -19,8 +19,9 @@ public:
 	const int getbrZavrsenihOglasa() const;
 	bool prijava() override;
 	friend std::ostream& operator<<(std::ostream& izlaz, Korisnik& k);
-	friend std::istream& operator>>(std::istream& izlaz, Korisnik& k);
+	friend std::istream& operator>>(std::istream& ulaz, Korisnik& k);
 	void ucitajKorisnike();
+	void dodajOglas();
 	~Korisnik() = default;
 };
 

@@ -1,8 +1,14 @@
 #include "Korisnik.h"
+#include "Oglas.h"
+#include "Vozilo.h"
+#include "Tehnika.h"
+#include "Nekretnina.h"
 #include <iostream>
 #include <regex> //Biblioteka regex je potreba kako bi mogli koristiti regex prilikom unosa sifre/maila/broja telefona. Na ovaj nacin nema potrebe za kompleksnom logikom da specifisemo nacin unosa nekog od spomenutih atributa
 #include <fstream>
 #include <Windows.h>
+
+
 std::vector<Korisnik> korisnici;
 
 Korisnik::Korisnik() : Osoba()
@@ -176,6 +182,33 @@ void Korisnik::ucitajKorisnike()
 	}
 }
 
+
+void Korisnik::dodajOglas()
+{
+	std::shared_ptr<Oglas> temp = std::make_shared<Oglas>();
+	temp->setKategorija();
+	std::shared_ptr<Oglas> o = nullptr;
+	switch (temp->getKategorija()) {
+	case vozilo: {
+		o = std::make_shared<Vozilo>(this->getUsername(), temp->getKategorija());
+		break;
+	}
+	case nekretnina: {
+		o = std::make_shared<Nekretnina>(this->getUsername(), temp->getKategorija());
+		break;
+	}
+	case tehnika: {
+		o = std::make_shared<Tehnika>(this->getUsername(), temp->getKategorija());
+		break;
+	}
+	default: {
+		std::cout << "Greska!";
+	}
+	}
+	std::cin >> *o;
+	o->unosOglasa();
+}
+
 std::ostream& operator<<(std::ostream& izlaz, Korisnik& k) //Operator << ispisuje sve registrovane korisnike
 {
 	try {
@@ -238,7 +271,7 @@ std::istream& operator>>(std::istream& ulaz, Korisnik& k) //Opretaor >> sluzi za
 			else izlaz << k.username << "\t\t";
 			if (k.sifra.size() >= 8) izlaz << k.sifra << "\t";
 			else izlaz << k.sifra << "\t\t";
-			if (k.email.size() >= 24) izlaz << k.ime << "\t";
+			if (k.email.size() >= 24) izlaz << k.email<< "\t";
 			else if (k.email.size() >= 16 && k.email.size() < 24) izlaz << k.email << "\t\t";
 			else if (k.email.size() >= 8 && k.email.size() < 16) izlaz << k.email << "\t\t\t";
 			else izlaz << k.email << "\t\t\t\t";

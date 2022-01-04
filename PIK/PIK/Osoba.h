@@ -18,6 +18,6 @@ public:
 	const std::string getSpolString() const;
 	virtual bool prijava() = 0;
 	std::string skrivenaSifra(std::string s, char znak);
-	~Osoba() = default;
+	virtual ~Osoba() = default;
 };
 

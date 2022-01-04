@@ -27,6 +27,18 @@
     <ClCompile Include="Korisnik.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Oglas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vozilo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Nekretnina.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tehnika.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Osoba.h">
@@ -38,9 +50,25 @@
     <ClInclude Include="Korisnik.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Oglas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vozilo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nekretnina.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tehnika.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="admini.txt" />
     <Text Include="korisnici.txt" />
+    <Text Include="oglasi.txt" />
+    <Text Include="vozila.txt" />
+    <Text Include="nekretnine.txt" />
+    <Text Include="tehnika.txt" />
   </ItemGroup>
 </Project>

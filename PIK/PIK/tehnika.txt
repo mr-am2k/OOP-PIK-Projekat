@@ -1,1 +1,1 @@
-866	8	256	Snapdragon 850	Samsung	android	3
+288	racunar	32	23	intel	os	mac

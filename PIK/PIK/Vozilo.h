@@ -10,7 +10,8 @@ private:
     int godiste, kilovati, brBrzina, kilometraza;
     std::string boja, tip;
     vrstaGoriva vrsta;
-public: 
+public:
+    Vozilo();
     Vozilo(std::string a, Kategorija k);
     void setGodiste();
     void setKilovati();
@@ -27,6 +28,7 @@ public:
     std::string getTip();
     vrstaGoriva getVrstaGoriva();
     std::string getVrstaGorivaString();
+    const std::vector<Vozilo> getVozila() const;
     void unosOglasa() override;
     ~Vozilo() = default;
 };

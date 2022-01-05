@@ -1,6 +1,20 @@
 #include "Vozilo.h"
 #include <iostream>
 #include <fstream>
+
+Vozilo::Vozilo()
+{
+    this->godiste = 2009;
+    this->kilovati = 100;
+    this->brBrzina = 6;
+    this->kilometraza = 200000;
+    this->boja = "Crna";
+    this->tip = "Limuzina";
+    this->vrsta = dizel;
+    this->autor = "Niko";
+    this->kategorija = vozilo;
+}
+
 Vozilo::Vozilo(std::string a, Kategorija k) : Oglas()
 {
     this->godiste = 2009;
@@ -124,6 +138,32 @@ std::string Vozilo::getVrstaGorivaString()
     default:
         return "Greska";
     }
+}
+
+const std::vector<Vozilo> Vozilo::getVozila() const
+{
+    std::vector<Vozilo> vozila;
+    auto tempVozilo = std::make_shared<Vozilo>();
+    try {
+        std::ifstream ulaz("vozila.txt", std::ios::app);
+        if (ulaz.is_open()) {
+            int gorivo;
+            while(ulaz >> tempVozilo->id >> tempVozilo->godiste >> tempVozilo->kilovati>> tempVozilo->brBrzina >>  tempVozilo->kilometraza >> tempVozilo->boja >> tempVozilo->tip >> gorivo)
+            {
+                tempVozilo->vrsta = static_cast<vrstaGoriva>(gorivo);
+                vozila.push_back(*tempVozilo);
+            }
+        }
+        else {
+            throw "[IZUZETAK]: Otvaranje datoteke nije uspjelo!\n";
+        }
+    }
+    catch (const char* greska) {
+        std::cout << greska;
+        exit(0);
+    }
+
+    return vozila;
 }
 
 void Vozilo::unosOglasa()

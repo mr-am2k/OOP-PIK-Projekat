@@ -11,6 +11,7 @@ private:
     std::string grad, ulica;
     vrstaNekretnine vrstaNekret;
 public:
+    Nekretnina();
     Nekretnina(std::string a, Kategorija k);
     void setKvadrati();
     void setBrSoba();
@@ -25,6 +26,7 @@ public:
     std::string getUlica();
     std::string getVrstaNekretnineString();
     vrstaNekretnine getVrstaNekretine();
+    const std::vector<Nekretnina> getNekretnine() const;
     void unosOglasa() override;
     ~Nekretnina() = default;
 };

@@ -2,6 +2,10 @@
 #include<iostream>
 #include <fstream>
 
+Tehnika::Tehnika()
+{
+}
+
 Tehnika::Tehnika(std::string a, Kategorija k) : Oglas()
 {
     this->ram = 1;
@@ -107,6 +111,32 @@ std::string Tehnika::getVrstaTehnikeString()
 vrstaTehnike Tehnika::getVrstaTehnike()
 {
     return this->vrstaTeh;
+}
+
+const std::vector<Tehnika> Tehnika::getTehnike() const
+{
+    std::vector<Tehnika> tehnika;
+    auto tempTehnika = std::make_shared<Tehnika>();
+    try {
+        std::ifstream ulaz("tehnika.txt", std::ios::app);
+        if (ulaz.is_open()) {
+            int vrsta;
+            while (ulaz >> tempTehnika->id >> vrsta >> tempTehnika->ram >> tempTehnika->pohrana >> tempTehnika->procesor >> tempTehnika->proizvodjac >> tempTehnika->operativniSistem)
+            {
+                tempTehnika->vrstaTeh = static_cast<vrstaTehnike>(vrsta);
+                tehnika.push_back(*tempTehnika);
+            }
+        }
+        else {
+            throw "[IZUZETAK]: Otvaranje datoteke nije uspjelo!\n";
+        }
+    }
+    catch (const char* greska) {
+        std::cout << greska;
+        exit(0);
+    }
+
+    return tehnika;
 }
 
 void Tehnika::unosOglasa()

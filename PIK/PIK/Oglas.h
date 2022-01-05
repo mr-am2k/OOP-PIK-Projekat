@@ -32,6 +32,11 @@ public:
 	Stanje getStanje();
 	std::string getStanjeString();
 	std::string getKategorijaString();
+	const int getBrojAktivnihOglasa() const;
+	const int getBrojNedostupnihOglasa() const;
+	void mojiOglasi(Korisnik& tempKorisnik);
+	void promijeniStanjeOglasa(Korisnik& tempKorisnik);
+	void izbrisiOglas(Korisnik& tempKorisnik);
 	int generisiRandomID();
 	bool provjeriID(int a);
 	friend std::istream& operator>>(std::istream& unos, Oglas& o);

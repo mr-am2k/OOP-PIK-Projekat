@@ -1,16 +1,7 @@
 Ime		Prezime		Username	Sifra		Email				Broj telefona	Spol	Aktivni oglasi	Zavrseni oglasi
-Ajdin		Bukvic		toreno		Sifra123!	ajdin.bukvic.20@size.ba		123/456-789	musko		5		7
-Neko		Neki		nesto		Sifra123!	lol@gmail.com			333/444/555	zensko		0		3
-Novi		Korisnik	pik		PIK123pik#	pik.pik@hotmail.com		345/534-423	musko		0		0
-ime		prezime		username	sifrA1__	a@a.a				111/235-986	zensko		0		0
-aaaaa		bbbb		cccccc		ABCabc123!	vvv.ggg@hhh.ddd			645/423-778	musko		0		0
-zzz		uuu		rrr		ttt321P#	arer.tt@gfd.zzu			432/543-177	zensko		0		0
-qqqq		rrrrrrr		ggggg		aaaA5555!!!	fffv@b.c			124/556-779	musko		0		0
-Muamer		Alickovic	am2k		am2kamwkK.	alickovic@gmail.com		123/345-555	musko		0		0
-abc		asf		asjfajs		aklsfjaJ123$	emir.zambakovicas@gmail.com	123/456-789	musko		0		0
-Muamer		Alickovic	aktvok		amtvok123I$	am.tvok@kk.com			123/123-212	musko		0		0
-Hoasfja		SKLFJAS		AJFKSJ		jasamEmi$2	abc.bca@gma.com			123/462-122	zensko		0		0
-Torenoe		Amtvok		zexachh		abcE$123	ab.nbm@gmas.com			123/456-789	musko		0		0
-HFASH		JFASKLFJ	KFJQWF		LKSJFsjhf2$	ajs.bjs@sa.c			123/462-122	zensko		0		0
-jskfa		flkjq		aklsfja		jasjfJ$212	abc.bca@ask.s			123/426-122	zensko		0		0
-abcsa		fjlskql		kalsfjlkwqjg	klfjshafjlk#J21	easf.saf@saf.com		123/356-212	musko		0		0
+Muamer		Alickovic	am2k		Muamer123!	muamer@gmail.com		061/435-322	musko		0		0
+Emir		Zambakovic	zexach		Emir123!	emir@gmail.com			061/433-232	musko		0		0
+Amer		Pasanbegovic	pasha		Amer123!	pasha@gmail.com			061/123-321	musko		0		0
+Ajdin		Bukvic		toreno		Ajdin123!	ajdin@gmail.com			069/696-696	zensko		0		0
+Edin		Tabak		skofara		Edin123!	edin@gmail.com			061/434-323	musko		0		0
+Nevzudin	Buzadjija	namir		Namir123!	namir@gmail.com			050/555-5555	musko		0		0

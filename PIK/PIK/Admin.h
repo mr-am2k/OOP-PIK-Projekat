@@ -10,6 +10,8 @@ public:
     const int getKod() const;
     bool prijava() override;
     void ucitajAdmine();
+    void ispisStanja(); //Ispisuje koliko je trenutno korisnika registrovano, koliko je aktivnih oglasa, zvrsenih oglasa, ukupno oglasa
+    void infoOKorisniku();
     ~Admin() = default;
 };
 

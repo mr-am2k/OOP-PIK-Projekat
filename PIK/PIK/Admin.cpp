@@ -1,8 +1,11 @@
 #include "Admin.h"
+#include "Korisnik.h"
+#include "Oglas.h"
 #include <vector>
 #include <fstream>
 #include <iostream>
 #include <Windows.h>
+#include <fstream>
 std::vector<Admin> admini;
 
 Admin::Admin() : Osoba()
@@ -118,5 +121,44 @@ void Admin::ucitajAdmine()
 	catch (const char* greska) {
 		std::cout << greska;
 		exit(0);
+	}
+}
+
+void Admin::ispisStanja()
+{
+	auto temp = std::make_shared<Korisnik>();
+	auto oglasTemp = std::make_shared<Oglas>();
+	std::cout << "Podaci: \n";
+	std::cout << "Ukupan broj korisnika registrovanih na sistem: "<<temp->getBrojKorisnika()<<"\n";
+	std::cout << "Ukupan broj dostupnih oglasa: " << oglasTemp->getBrojAktivnihOglasa() << "\n";
+	std::cout << "Ukupan broj nedostupnih oglasa: " << oglasTemp->getBrojNedostupnihOglasa() << "\n";
+	std::cout << "Ukupan broj oglasa: " << (oglasTemp->getBrojAktivnihOglasa() + oglasTemp->getBrojNedostupnihOglasa()) << "\n";
+
+}
+
+void Admin::infoOKorisniku()
+{
+	auto tempUsername = std::make_shared<std::string>();
+	auto temp = std::make_shared<Korisnik>();
+	std::vector<Korisnik> korisnici;
+	korisnici = temp->getKorisnike();
+	std::cout << "Unesite username korisnika kojeg zelite pretraziti: ";
+	std::cin >> *tempUsername;
+	for(int i = 0; i<korisnici.size(); i++)
+	{
+		if (tempUsername->compare(korisnici[i].getUsername()) == 0)
+		{
+			std::cout << "Podaci o korisniku: \n";
+			std::cout << "Ime: " << korisnici[i].getIme() << "\n";
+			std::cout << "Prezime: " << korisnici[i].getPrezime()<< "\n";
+			std::cout << "Username: " << korisnici[i].getUsername() << "\n";
+			std::cout << "Sifra: " << korisnici[i].getSifra() << "\n";
+			std::cout << "Email: " << korisnici[i].getEmail() << "\n";
+			std::cout << "Broj telefona: " << korisnici[i].getBrojTelefona() << "\n";
+			std::cout << "Spol: " << korisnici[i].getSpolString() << "\n";
+			std::cout << "Broj aktivnih oglasa: " << korisnici[i].getbrAktivnihOglasa() << "\n";
+			std::cout << "Broj zavrsenih oglasa: " << korisnici[i].getbrZavrsenihOglasa() << "\n";
+			break;
+		}
 	}
 }

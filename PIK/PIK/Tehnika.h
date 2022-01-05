@@ -11,6 +11,7 @@ private:
     std::string proizvodjac, procesor, operativniSistem;
     vrstaTehnike vrstaTeh;
 public:
+    Tehnika();
     Tehnika(std::string a, Kategorija k);
     void setRam();
     void setPohrana();
@@ -25,6 +26,7 @@ public:
     std::string getOperativniSistem();
     std::string getVrstaTehnikeString();
     vrstaTehnike getVrstaTehnike();
+    const std::vector<Tehnika> getTehnike() const;
     void unosOglasa() override;
     ~Tehnika() = default;
 };

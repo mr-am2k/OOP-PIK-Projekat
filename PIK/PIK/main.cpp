@@ -2,13 +2,21 @@
 #include "Korisnik.h"
 #include "Admin.h"
 #include "Oglas.h"
+#include "Vozilo.h"
+
 int main()
 {
+	
 	Korisnik k;
-	if (k.prijava()) {
-		k.dodajOglas();
-	}
+	/*std::cin >> k;
+	std::system("cls");
+	k.dodajOglas();*/
+	k.prijava();
+	
+	std::system("cls");
 
+	Oglas o;
+	o.izbrisiOglas(k);
 	return 0;
 
 }

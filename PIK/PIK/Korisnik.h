@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 #include "Osoba.h"
 class Korisnik :
 	public Osoba
@@ -17,6 +19,8 @@ public:
 	void setSpol();
 	const int getbrAktivnihOglasa() const;
 	const int getbrZavrsenihOglasa() const;
+	const int getBrojKorisnika() const;
+	const std::vector<Korisnik> getKorisnike() const;
 	bool prijava() override;
 	friend std::ostream& operator<<(std::ostream& izlaz, Korisnik& k);
 	friend std::istream& operator>>(std::istream& ulaz, Korisnik& k);

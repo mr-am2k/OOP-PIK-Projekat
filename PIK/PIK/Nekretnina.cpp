@@ -1,6 +1,11 @@
 #include "Nekretnina.h"
 #include <iostream>
 #include <fstream>
+
+Nekretnina::Nekretnina()
+{
+}
+
 Nekretnina::Nekretnina(std::string a, Kategorija k) : Oglas()
 {
     this->kvadrati = 100;
@@ -113,6 +118,32 @@ std::string Nekretnina::getVrstaNekretnineString()
 vrstaNekretnine Nekretnina::getVrstaNekretine()
 {
     return this->vrstaNekret;
+}
+
+const std::vector<Nekretnina> Nekretnina::getNekretnine() const
+{
+    std::vector<Nekretnina> nekretnine;
+    auto tempNekretnina = std::make_shared<Nekretnina>();
+    try {
+        std::ifstream ulaz("nekretnine.txt", std::ios::app);
+        if (ulaz.is_open()) {
+            int vrsta;
+            while (ulaz >> tempNekretnina->id >> tempNekretnina->kvadrati >> tempNekretnina->brSoba >> tempNekretnina->brSpratova >> tempNekretnina->grad >> tempNekretnina->ulica >> vrsta)
+            {
+                tempNekretnina->vrstaNekret = static_cast<vrstaNekretnine>(vrsta);
+                nekretnine.push_back(*tempNekretnina);
+            }
+        }
+        else {
+            throw "[IZUZETAK]: Otvaranje datoteke nije uspjelo!\n";
+        }
+    }
+    catch (const char* greska) {
+        std::cout << greska;
+        exit(0);
+    }
+
+    return nekretnine;
 }
 
 void Nekretnina::unosOglasa()

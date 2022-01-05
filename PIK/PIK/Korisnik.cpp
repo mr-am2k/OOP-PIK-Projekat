@@ -102,6 +102,63 @@ const int Korisnik::getbrZavrsenihOglasa() const
 	return this->brZavrsenihOglasa;
 }
 
+const int Korisnik::getBrojKorisnika() const
+{
+	try {
+		korisnici.clear();
+		std::ifstream ulaz("korisnici.txt");
+		auto brojac = std::make_shared<int>();
+		*brojac = 0;
+		if (ulaz.is_open()) {
+			std::shared_ptr<Korisnik> temp = std::make_shared<Korisnik>();
+			std::string linijaInfo;
+			std::string spolString;
+			std::getline(ulaz, linijaInfo);
+			while (ulaz >> temp->ime >> temp->prezime >> temp->username >> temp->sifra >> temp->email >> temp->brojTelefona >> spolString >> temp->brAktivnihOglasa >> temp->brZavrsenihOglasa) {
+				*brojac = *brojac + 1;
+			}
+			ulaz.close();
+			return *brojac;
+		}
+		else {
+			throw "[IZUZETAK]: Otvaranje datoteke nije uspjelo!\n";
+		}
+	}
+	catch (const char* greska) {
+		std::cout << greska;
+		exit(0);
+	}
+
+}
+
+const std::vector<Korisnik> Korisnik::getKorisnike() const
+{
+	try {
+		korisnici.clear();
+		std::ifstream ulaz("korisnici.txt");
+		if (ulaz.is_open()) {
+			std::shared_ptr<Korisnik> temp = std::make_shared<Korisnik>();
+			std::string linijaInfo;
+			std::string spolString;
+			std::getline(ulaz, linijaInfo);
+			while (ulaz >> temp->ime >> temp->prezime >> temp->username >> temp->sifra >> temp->email >> temp->brojTelefona >> spolString >> temp->brAktivnihOglasa >> temp->brZavrsenihOglasa) {
+				if (spolString == "musko") temp->spol = musko;
+				else temp->spol = zensko;
+				korisnici.push_back(*temp);
+			}
+			ulaz.close();
+		}
+		else {
+			throw "[IZUZETAK]: Otvaranje datoteke nije uspjelo!\n";
+		}
+	}
+	catch (const char* greska) {
+		std::cout << greska;
+		exit(0);
+	}
+	return korisnici;
+}
+
 bool Korisnik::prijava()
 {
 	this->ucitajKorisnike();
@@ -209,7 +266,9 @@ void Korisnik::dodajOglas()
 	o->unosOglasa();
 }
 
-std::ostream& operator<<(std::ostream& izlaz, Korisnik& k) //Operator << ispisuje sve registrovane korisnike
+
+
+std::ostream& operator<<(std::ostream& izlaz, Korisnik& k) 
 {
 	try {
 		korisnici.clear();
@@ -221,18 +280,19 @@ std::ostream& operator<<(std::ostream& izlaz, Korisnik& k) //Operator << ispisuj
 			std::getline(ulaz, linijaInfo);
 			while (ulaz >> temp->ime >> temp->prezime >> temp->username >> temp->sifra >> temp->email >> temp->brojTelefona >> spolString >> temp->brAktivnihOglasa >> temp->brZavrsenihOglasa) {
 				izlaz << "--------------------------------------------------------------\n";
-				izlaz << "\t\t*** INFORMACIJE O KORISNIKU ***\n";
+				izlaz << "\t\t INFORMACIJE O KORISNIKU \n";
 				izlaz << "--------------------------------------------------------------\n";
-				izlaz << "Ime: " << temp->ime << std::endl;
-				izlaz << "Prezime: " << temp->prezime << std::endl;
-				izlaz << "Username: " << temp->username << std::endl;
-				izlaz << "Sifra: " << temp->sifra << std::endl;
-				izlaz << "Email: " << temp->email << std::endl;
-				izlaz << "Broj telefona: " << temp->brojTelefona << std::endl;
-				izlaz << "Spol: " << temp->getSpolString() << std::endl;
-				izlaz << "Broj aktivnih oglasa: " << temp->brAktivnihOglasa << std::endl;
-				izlaz << "Broj zavrsenih oglasa: " << temp->brZavrsenihOglasa << std::endl;
+				izlaz << "Ime: " << k.ime << std::endl;
+				izlaz << "Prezime: " << k.prezime << std::endl;
+				izlaz << "Username: " << k.username << std::endl;
+				izlaz << "Sifra: " << k.sifra << std::endl;
+				izlaz << "Email: " << k.email << std::endl;
+				izlaz << "Broj telefona: " << k.brojTelefona << std::endl;
+				izlaz << "Spol: " << k.getSpolString() << std::endl;
+				izlaz << "Broj aktivnih oglasa: " << k.brAktivnihOglasa << std::endl;
+				izlaz << "Broj zavrsenih oglasa: " << k.brZavrsenihOglasa << std::endl;
 				izlaz << "--------------------------------------------------------------\n";
+				return izlaz;
 			}
 			ulaz.close();
 		}

@@ -1,0 +1,9 @@
+﻿  Korisnik.cpp
+C:\Users\Pasha\Desktop\Productivity\Fax\OOP\Projekat\OOP-PIK-Projekat\PIK\PIK\Korisnik.cpp(52,32): warning C4129: '$': unrecognized character escape sequence
+C:\Users\Pasha\Desktop\Productivity\Fax\OOP\Projekat\OOP-PIK-Projekat\PIK\PIK\Korisnik.cpp(52,32): warning C4129: '^': unrecognized character escape sequence
+C:\Users\Pasha\Desktop\Productivity\Fax\OOP\Projekat\OOP-PIK-Projekat\PIK\PIK\Korisnik.cpp(52,32): warning C4129: '*': unrecognized character escape sequence
+C:\Users\Pasha\Desktop\Productivity\Fax\OOP\Projekat\OOP-PIK-Projekat\PIK\PIK\Korisnik.cpp(52,32): warning C4129: '+': unrecognized character escape sequence
+C:\Users\Pasha\Desktop\Productivity\Fax\OOP\Projekat\OOP-PIK-Projekat\PIK\PIK\Korisnik.cpp(52,32): warning C4129: '-': unrecognized character escape sequence
+C:\Users\Pasha\Desktop\Productivity\Fax\OOP\Projekat\OOP-PIK-Projekat\PIK\PIK\Korisnik.cpp(52,32): warning C4129: '.': unrecognized character escape sequence
+C:\Users\Pasha\Desktop\Productivity\Fax\OOP\Projekat\OOP-PIK-Projekat\PIK\PIK\Korisnik.cpp(52,32): warning C4129: ',': unrecognized character escape sequence
+  PIK.vcxproj -> C:\Users\Pasha\Desktop\Productivity\Fax\OOP\Projekat\OOP-PIK-Projekat\PIK\x64\Debug\PIK.exe

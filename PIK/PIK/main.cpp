@@ -3,7 +3,6 @@
 #include "Admin.h"
 #include "Oglas.h"
 #include "Vozilo.h"
-#include <conio.h>
 
 int main(){
 	
@@ -13,7 +12,9 @@ int main(){
 	int izbor;
 	do {
 		system("cls");
-		std::cout << "GLAVNI MENI\n";
+		std::cout << "------------------------------------------------------\n";
+		std::cout << "\t\t*** GLAVNI MENU ***\n";
+		std::cout << "------------------------------------------------------\n";
 		std::cout << "\t1. Registracija\n";
 		std::cout << "\t2. Prijava\n";
 		std::cout << "\t3. Admin prijava\n";
@@ -30,7 +31,10 @@ int main(){
 			if (k.prijava()) {
 				int izbor2;
 				do {
-					std::cout << "KORISNIK MENI\n";
+					system("cls");
+					std::cout << "------------------------------------------------------\n";
+					std::cout << "\t\t*** KORISNIK MENU ***\n";
+					std::cout << "------------------------------------------------------\n";					
 					std::cout << "\t1. Dodaj oglas\n";
 					std::cout << "\t2. Moji oglasi\n";
 					std::cout << "\t3. Promijeni stanje oglasa\n";
@@ -38,7 +42,7 @@ int main(){
 					std::cout << "\t5. Prikazi oglase\n";
 					std::cout << "\t6. Izbrisi oglas\n";
 					std::cout << "\t7. Promijeni sifru\n";
-					std::cout << "\t8. Izlaz\n";
+					std::cout << "\t8. Odjava\n";
 					std::cout << "\tUnesite vas izbor: ";
 					std::cin >> izbor2;
 					switch (izbor2) {
@@ -58,13 +62,15 @@ int main(){
 						system("cls");
 						int izbor3;
 						do {
-							std::cout << "PRETRAGA MENI\n";
+							std::cout << "------------------------------------------------------\n";
+							std::cout << "\t\t*** PRETRAGA MENU ***\n";
+							std::cout << "------------------------------------------------------\n";
 							std::cout << "\t1. Filtriraj po cijeni\n";
 							std::cout << "\t2. Filtriraj po kategoriji\n";
 							std::cout << "\t3. Sortiraj po cijeni (min-max)\n";
 							std::cout << "\t4. Sortiraj po cijeni (max-min)\n";
 							std::cout << "\t5. Pretraga po kljucnoj rijeci\n";
-							std::cout << "\t6. Izlaz\n";
+							std::cout << "\t6. Nazad na korisnik meni\n";
 							std::cout << "\tUnesite vas izbor: ";
 							std::cin >> izbor3;
 							switch (izbor3) {
@@ -88,14 +94,8 @@ int main(){
 								system("cls");
 
 								break;
-							case 6:
-								std::cin.clear();
-								std::cin.ignore(100, '\n');
-								return 0;
 							}
-							std::cout << "\nPritisnite bilo koju tipku za nastavak";
-							_getch();
-						} while (izbor3!=6);
+						} while (izbor3 != 6);
 						break;
 					case 5:
 						system("cls");
@@ -109,29 +109,25 @@ int main(){
 						system("cls");
 
 						break;
-					case 8:
-						std::cin.clear();
-						std::cin.ignore(100, '\n');
-						return 0;
 					}
-					std::cout << "\nPritisnite bilo koju tipku za nastavak";
-					_getch();
 				} while (izbor2 != 8);
 			}
 			break;
 		case 3:
 			system("cls");
 			if (a.prijava()) {
-				int izbor3;
+				int izbor4;
 				do {
 					system("cls");
-					std::cout << "ADMIN MENI\n";
+					std::cout << "------------------------------------------------------\n";
+					std::cout << "\t\t*** ADMIN MENU ***\n";
+					std::cout << "------------------------------------------------------\n";
 					std::cout << "\t1. Ispis stanja\n";
 					std::cout << "\t2. Pretrazi informacije o korisniku\n";
-					std::cout << "\t3. Izlaz\n";
+					std::cout << "\t3. Odjava\n";
 					std::cout << "\tUnesite vas izbor: ";
-					std::cin >> izbor3;
-					switch (izbor3) {
+					std::cin >> izbor4;
+					switch (izbor4) {
 					case 1:
 						system("cls");
 						a.ispisStanja();
@@ -140,14 +136,8 @@ int main(){
 						system("cls");
 						a.infoOKorisniku();
 						break;
-					case 3:
-						std::cin.clear();
-						std::cin.ignore(100, '\n');
-						return 0;
 					}
-					std::cout << "\nPritisnite bilo koju tipku za nastavak";
-					_getch();
-				} while (izbor3 != 5);
+				} while (izbor4 != 3);
 			}
 			break;
 		case 4:

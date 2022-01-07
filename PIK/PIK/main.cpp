@@ -11,7 +11,6 @@ int main(){
 	Admin a;
 	Oglas o;
 	int izbor;
-	bool ispravnostKorisnik;
 	do {
 		system("cls");
 		std::cout << "GLAVNI MENI\n";

@@ -1,11 +1,7 @@
 Ime		Prezime		Username	Sifra		Email				Broj telefona	Spol	Aktivni oglasi	Zavrseni oglasi
 Muamer		Alickovic	am2k		Muamer123!	muamer@gmail.com		061/435-322	musko		0		0
 Emir		Zambakovic	zexach		Emir123!	emir@gmail.com			061/433-232	musko		0		0
-Amer		Pasanbegovic	pasha		Amer123!	pasha@gmail.com			061/123-321	musko		0		0
+Amer		Pasanbegovic	pasha		Pasha123!	pasha@gmail.com			061/123-321	musko		0		0
 Ajdin		Bukvic		toreno		Ajdin123!	ajdin@gmail.com			069/696-696	zensko		0		0
 Edin		Tabak		skofara		Edin123!	edin@gmail.com			061/434-323	musko		0		0
 Nevzudin	Buzadjija	namir		Namir123!	namir@gmail.com			050/555-5555	musko		0		0
-Skr		Skrr		skrskrr		skrSkrsk!123	skrskr@skr.cs			123/345-212	musko		0		0
-Emir		Zambakovic	3zlife		Zexach123!	zex@gmail.com			123/456-123	musko		0		0
-Jabuka		Jagoda		jabukajagoda	Jabukajagoda123!	jabuka@jagoda.com		123/456-789	musko		0		0
-blahblah	blah		blahblah	Blahblah123!	bl@a.c				123/456-232	musko		0		0

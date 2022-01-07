@@ -214,6 +214,45 @@ const int Oglas::getBrojNedostupnihOglasa() const
     }
 }
 
+const std::vector<Oglas> Oglas::getOglasi() const
+{
+    std::vector<Oglas> oglasi;
+    auto tempOglas = std::make_shared<Oglas>();
+    try {
+        std::ifstream ulaz("oglasi.txt", std::ios::app);
+        if (ulaz.is_open()) {
+            int stanje;
+            int kategorija;
+            std::string linijaInfo;
+            getline(ulaz, linijaInfo);
+            while (ulaz >> tempOglas->id >> tempOglas->autor >> tempOglas->naslov >> tempOglas->opis >> tempOglas->cijena >> stanje >> kategorija)
+            {
+                for (int i = 0; i < tempOglas->naslov.length(); i++)
+                {
+                    if (tempOglas->naslov[i] == 95) tempOglas->naslov[i] = 32;
+                }
+                for (int i = 0; i < tempOglas->opis.length(); i++)
+                {
+                    if (tempOglas->opis[i] == 95) tempOglas->opis[i] = 32;
+                }
+                tempOglas->kategorija = static_cast<Kategorija>(kategorija);
+                tempOglas->stanje = static_cast<Stanje>(stanje);
+                oglasi.push_back(*tempOglas);
+            }
+        }
+        else {
+            throw "[IZUZETAK]: Otvaranje datoteke nije uspjelo!\n";
+        }
+        ulaz.close();
+    }
+    catch (const char* greska) {
+        std::cout << greska;
+        exit(0);
+    }
+
+    return oglasi;
+}
+
 void Oglas::mojiOglasi(Korisnik& tempKorisnik)
 {
     auto temp = std::make_shared<Oglas>();
@@ -616,6 +655,185 @@ bool Oglas::provjeriID(int a)
         std::cout << "[GRESKA] Ne postoji datoteka!\n";
     }
     return postoji;
+}
+
+void Oglas::ispisOglasa(std::vector<Oglas> oglasi)
+{
+    std::cout << "ID\tUsername\t\tNaslov\t\t\tOpis\t\t\tCijena\t\tStanje\t\tKategorija\n";
+    for (int i = 0; i < oglasi.size(); i++) {
+        std::cout << oglasi[i].id << "\t";
+        if (oglasi[i].autor.size() >= 8) std::cout << oglasi[i].autor << "\t";
+        else std::cout << oglasi[i].autor << "\t\t";
+        if (oglasi[i].naslov.size() >= 24) std::cout << oglasi[i].naslov << "\t";
+        else if (oglasi[i].naslov.size() >= 16 && oglasi[i].naslov.size() < 24) std::cout << oglasi[i].naslov << "\t\t";
+        else if (oglasi[i].naslov.size() >= 8 && oglasi[i].naslov.size() < 16) std::cout << oglasi[i].naslov << "\t\t\t";
+        else std::cout << oglasi[i].naslov << "\t\t\t\t";
+        if (oglasi[i].opis.size() >= 24) std::cout << oglasi[i].opis << "\t";
+        else if (oglasi[i].opis.size() >= 16 && oglasi[i].opis.size() < 24) std::cout << oglasi[i].opis << "\t\t";
+        else if (oglasi[i].opis.size() >= 8 && oglasi[i].opis.size() < 16) std::cout << oglasi[i].opis << "\t\t\t";
+        else std::cout << oglasi[i].opis << "\t\t\t\t";
+        std::cout << oglasi[i].cijena << "\t\t";
+        std::cout << oglasi[i].stanje << "\t\t";
+        std::cout << oglasi[i].kategorija;
+        std::cout << std::endl;
+    }
+}
+
+void Oglas::ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID)
+{
+    int indexZaIspis;
+    for (int i = 0; i < oglasi.size(); i++) {
+        if (oglasi[i].getID() == ID) {
+            indexZaIspis = i;
+        }
+    }
+    switch (oglasi[indexZaIspis].getKategorija())
+    {
+        case vozilo: {
+            auto tempVozilo = std::make_shared<Vozilo>();
+            std::vector<Vozilo> vozila = tempVozilo->getVozila();
+            std::cout << "ID\tGodiste\t\tKilovati\tBroj brzina\tKilometraza\tBoja\t\tTip\t\tVrsta goriva\n";
+            for (int i = 0; i < vozila.size(); i++)
+            {
+                if (vozila[i].getID() == oglasi[indexZaIspis].getID())
+                {
+                    std::cout << vozila[i].getID() << "\t";
+                    std::cout << vozila[i].getGodiste() << "\t\t";
+                    std::cout << vozila[i].getKilovati() << "\t\t";
+                    std::cout << vozila[i].getBrBrzina() << "\t\t";
+                    std::cout << vozila[i].getKilometraza() << "\t\t";
+                    if (vozila[i].getBoja().size() >= 8) std::cout << vozila[i].getBoja() << "\t";
+                    else std::cout << vozila[i].getBoja() << "\t\t";
+                    if (vozila[i].getTip().size() >= 8) std::cout << vozila[i].getTip() << "\t";
+                    else std::cout << vozila[i].getTip() << "\t\t";
+                    std::cout << vozila[i].getVrstaGoriva() << "\n";
+                }
+            }
+        }
+        case nekretnina: {
+            auto tempNekretnina = std::make_shared<Nekretnina>();
+            std::vector<Nekretnina> nekretnine = tempNekretnina->getNekretnine();
+            std::cout << "ID\tVrsta\tKvadrati\tBroj soba\tBroj spratova\tGrad\t\tUlica\n";
+            for (int i = 0; i < nekretnine.size(); i++)
+            {
+                if (nekretnine[i].getID() == oglasi[indexZaIspis].getID())
+                {
+                    std::cout << nekretnine[i].getID() << "\t";
+                    std::cout << nekretnine[i].getVrstaNekretine() << "\t";
+                    std::cout << nekretnine[i].getKvadrati() << "\t\t";
+                    std::cout << nekretnine[i].getBrSoba() << "\t\t";
+                    std::cout << nekretnine[i].getBrSpratova() << "\t\t";
+                    if (nekretnine[i].getGrad().size() >= 8) std::cout << nekretnine[i].getGrad() << "\t";
+                    else std::cout << nekretnine[i].getGrad() << "\t\t";
+                    std::cout << nekretnine[i].getUlica() << "\n";
+                }
+            }
+        }
+        case tehnika: {
+            auto tempTehnika = std::make_shared<Tehnika>();
+            std::vector<Tehnika> tehnika = tempTehnika->getTehnike();
+            std::cout << "ID\tVrsta\tRAM\tPohrana(GB)\tProcesor\tProizvodjac\tOS\n";
+            for (int i = 0; i < tehnika.size(); i++)
+            {
+                if (tehnika[i].getID() == oglasi[indexZaIspis].getID())
+                {
+                    std::cout << tehnika[i].getID() << "\t";
+                    std::cout << tehnika[i].getVrstaTehnike() << "\t";
+                    std::cout << tehnika[i].getRam() << "\t";
+                    std::cout << tehnika[i].getPohrana() << "\t\t";
+                    if (tehnika[i].getProcesor().size() >= 8) std::cout << tehnika[i].getProcesor() << "\t";
+                    else std::cout << tehnika[i].getProcesor() << "\t\t";
+                    if (tehnika[i].getProizvodjac().size() >= 8) std::cout << tehnika[i].getProizvodjac() << "\t";
+                    else std::cout << tehnika[i].getProizvodjac() << "\t\t";
+                    std::cout << tehnika[i].getOperativniSistem() << "\n";
+                }
+            }
+        }
+    }
+}
+
+bool Oglas::trebaBrisati(int kategorija)
+{
+    if (this->kategorija != kategorija) {
+        return true;
+    }
+}
+
+void Oglas::filtrirajPoCijeni(std::vector<Oglas> &oglasi)
+{
+    int minCijena;
+    int maxCijena;
+    std::cout << "Unesite minimalnu cijenu: ";
+    std::cin >> minCijena;
+    std::cout << "Unesite maksimalnu cijenu: ";
+    std::cin >> maxCijena;
+    std::vector<Oglas> noviVektor;
+    for (int i = 0; i < oglasi.size(); i++) {
+        if (oglasi[i].cijena < minCijena || oglasi[i].cijena > maxCijena) {
+            continue;
+        }
+        else {
+            noviVektor.push_back(oglasi[i]);
+        }
+    }
+    oglasi = noviVektor;
+}
+
+void Oglas::filtrirajPoKategoriji(std::vector<Oglas> &oglasi)
+{
+    int kategorija;
+    std::cout << "Unesite broj kategorije koju zelite vidjeti (1 - vozila, 2 - nekretnine, 3 - tehnika): ";
+    std::cin >> kategorija;
+    std::vector<Oglas> noviVektor;
+    for (int i = 0; i < oglasi.size(); i++) {
+        if (oglasi[i].getKategorija() != kategorija) {
+            continue;
+        }
+        else {
+            noviVektor.push_back(oglasi[i]);
+        }
+    }
+    oglasi = noviVektor;
+}
+
+void Oglas::sortirajPoCijeniRastuci(std::vector<Oglas> &oglasi)
+{
+    for (int i = 0; i < oglasi.size(); i++) {
+        for (int j = 0; j < i; j++) {
+            if (oglasi[i].cijena < oglasi[j].cijena) {
+                std::swap(oglasi[i], oglasi[j]);
+            }
+        }
+    }
+}
+
+void Oglas::sortirajPoCijeniOpadajuci(std::vector<Oglas> &oglasi)
+{
+    for (int i = 0; i < oglasi.size(); i++) {
+        for (int j = 0; j < i; j++) {
+            if (oglasi[i].cijena > oglasi[j].cijena) {
+                std::swap(oglasi[i], oglasi[j]);
+            }
+        }
+    }
+}
+
+void Oglas::pretragaPoRijeci(std::vector<Oglas> &oglasi)
+{
+    std::string rijec;
+    std::cout << "Unesite kljucnu rijec za pretragu: ";
+    std::cin >> rijec;
+    std::cin.ignore();
+    std::vector<Oglas> noviVektor;
+    for (int i = 0; i < oglasi.size(); i++) {
+        if (oglasi[i].naslov.find(rijec) == std::string::npos) {
+            continue;
+        }
+        else {
+            noviVektor.push_back(oglasi[i]);
+        }
+    }
+    oglasi = noviVektor;
 }
 
 void Oglas::unosOglasa()

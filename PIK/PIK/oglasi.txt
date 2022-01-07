@@ -2,3 +2,4 @@ ID	Username	Naslov				Opis				Cijena		Stanje		Kategorija
 550	toreno		tehnika_tri			tehnika_opis			6666		1		3
 615	toreno		aaa				bbbb				1111		1		2
 245	toreno		uuuu_pppp			rrrr_zzz_ttt			5555		1		1
+437	pasha		test_pretrage			testtesttest			1234		1		3

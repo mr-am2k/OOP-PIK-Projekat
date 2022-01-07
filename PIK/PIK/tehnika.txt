@@ -1,2 +1,3 @@
 ID	Vrsta	RAM	Pohrana(GB)	Procesor	Proizvodjac	OS
 550	1	44	666		fd_dgfg_ooo	fsdfsd_oooo_ds	fsdfsd_ggg_34
+437	2	4096	1000		amd_ryzen_3600	hp		windows

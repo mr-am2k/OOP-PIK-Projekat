@@ -212,6 +212,55 @@ bool Korisnik::prijava()
 	return postoji;
 }
 
+void Korisnik::promijeniSifru()
+{
+	this->setSifra();
+	this->ucitajKorisnike();
+	for (int i = 0; i < korisnici.size(); i++) {
+		if (this->username == korisnici[i].getUsername()) {
+			korisnici[i].sifra = this->sifra;
+		}
+	}
+	try {
+		std::ifstream unos("korisnici.txt");
+		std::string temp;
+		std::getline(unos, temp);
+		unos.close();
+		std::ofstream izlaz("korisnici.txt");
+		izlaz << temp << std::endl;
+		for (int i = 0; i < korisnici.size(); i++) {
+			if (izlaz.is_open()) {
+				if (korisnici[i].ime.size() >= 8) izlaz << korisnici[i].ime << "\t";
+				else izlaz << korisnici[i].ime << "\t\t";
+				if (korisnici[i].prezime.size() >= 8) izlaz << korisnici[i].prezime << "\t";
+				else izlaz << korisnici[i].prezime << "\t\t";
+				if (korisnici[i].username.size() >= 8) izlaz << korisnici[i].username << "\t";
+				else izlaz << korisnici[i].username << "\t\t";
+				if (korisnici[i].sifra.size() >= 8) izlaz << korisnici[i].sifra << "\t";
+				else izlaz << korisnici[i].sifra << "\t\t";
+				if (korisnici[i].email.size() >= 24) izlaz << korisnici[i].email << "\t";
+				else if (korisnici[i].email.size() >= 16 && korisnici[i].email.size() < 24) izlaz << korisnici[i].email << "\t\t";
+				else if (korisnici[i].email.size() >= 8 && korisnici[i].email.size() < 16) izlaz << korisnici[i].email << "\t\t\t";
+				else izlaz << korisnici[i].email << "\t\t\t\t";
+				izlaz << korisnici[i].brojTelefona << "\t";
+				izlaz << korisnici[i].getSpolString() << "\t\t";
+				izlaz << korisnici[i].brAktivnihOglasa << "\t\t";
+				izlaz << korisnici[i].brZavrsenihOglasa << "\n";
+			}
+			else {
+				throw "[IZUZETAK]: Otvaranje datoteke nije uspjelo!\n";
+			}
+		}
+		izlaz.close();
+	}
+	catch (const char* greska) {
+		std::cout << greska;
+		exit(0);
+	}
+
+	std::cout << "Uspjesna izmjena sifre!" << std::endl;
+}
+
 void Korisnik::ucitajKorisnike()
 {
 	try {

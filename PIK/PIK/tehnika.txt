@@ -1,1 +1,2 @@
-288	racunar	32	23	intel	os	mac
+ID	Vrsta	RAM	Pohrana(GB)	Procesor	Proizvodjac	OS
+550	1	44	666		fd_dgfg_ooo	fsdfsd_oooo_ds	fsdfsd_ggg_34

@@ -1,1 +1,2 @@
-417	2017	84	6	69	crna	limuzina	1
+ID	Godiste		Kilovati	Broj brzina	Kilometraza	Boja		Tip		Vrsta goriva
+245	2015		66		5		111111		crna		limuzina	1

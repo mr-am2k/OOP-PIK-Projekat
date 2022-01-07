@@ -1,9 +1,4 @@
-417	toreno	Passat_b5	Bolja_je_skoda_bila_al_et	35000	1	1
-376	skofara	Kuca	Nova_kuca	10	1	2
-951	namir	Laptop	Ovdjek_u_bosni_njjaci	987	1	3
-956	am2k	test	test	123	1	3
-288	zexach	test2	test2	222	1	3
-417	toreno	Passat_b5	Bolja_je_skoda_bila_al_et	35000	1	1
-376	skofara	Kuca	Nova_kuca	10	1	2
-951	namir	Laptop	Ovdjek_u_bosni_njjaci	987	1	3
-288	zexach	test2	test2	222	1	3
+ID	Username	Naslov				Opis				Cijena		Stanje		Kategorija
+550	toreno		tehnika_tri			tehnika_opis			6666		1		3
+615	toreno		aaa				bbbb				1111		1		2
+245	toreno		uuuu_pppp			rrrr_zzz_ttt			5555		1		1

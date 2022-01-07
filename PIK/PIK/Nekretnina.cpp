@@ -53,12 +53,20 @@ void Nekretnina::setGrad()
 {
     std::cout << "Unesite naziv grada: ";
     getline(std::cin, this->grad);
+    for (int i = 0; i < this->grad.length(); i++)
+    {
+        if (this->grad[i] == 32) this->grad[i] = 95;
+    }
 }
 
 void Nekretnina::setUlica()
 {
     std::cout << "Unesite adresu: ";
     getline(std::cin, this->ulica);
+    for (int i = 0; i < this->ulica.length(); i++)
+    {
+        if (this->ulica[i] == 32) this->ulica[i] = 95;
+    }
 }
 
 void Nekretnina::setVrstaNekretnine()
@@ -128,7 +136,9 @@ const std::vector<Nekretnina> Nekretnina::getNekretnine() const
         std::ifstream ulaz("nekretnine.txt", std::ios::app);
         if (ulaz.is_open()) {
             int vrsta;
-            while (ulaz >> tempNekretnina->id >> tempNekretnina->kvadrati >> tempNekretnina->brSoba >> tempNekretnina->brSpratova >> tempNekretnina->grad >> tempNekretnina->ulica >> vrsta)
+            std::string linijaInfo;
+            getline(ulaz, linijaInfo);
+            while (ulaz >> tempNekretnina->id >> vrsta >> tempNekretnina->kvadrati >> tempNekretnina->brSoba >> tempNekretnina->brSpratova >> tempNekretnina->grad >> tempNekretnina->ulica)
             {
                 tempNekretnina->vrstaNekret = static_cast<vrstaNekretnine>(vrsta);
                 nekretnine.push_back(*tempNekretnina);
@@ -142,29 +152,31 @@ const std::vector<Nekretnina> Nekretnina::getNekretnine() const
         std::cout << greska;
         exit(0);
     }
-
+    
     return nekretnine;
+
 }
 
 void Nekretnina::unosOglasa()
 {
+    this->setVrstaNekretnine();
     this->setKvadrati();
     this->setBrSoba();
     this->setBrSpratova();
     this->setGrad();
     this->setUlica();
-    this->setVrstaNekretnine();
 
     try {
         std::ofstream izlaz("nekretnine.txt", std::ios::app);
         if (izlaz.is_open()) {
             izlaz << this->getID() << "\t";
-            izlaz << this->getKvadrati() << "\t";
-            izlaz << this->getBrSoba() << "\t";
-            izlaz << this->getBrSpratova() << "\t";
-            izlaz << this->getGrad() << "\t";
-            izlaz << this->getUlica() << "\t";
-            izlaz << this->getVrstaNekretine() << "\n";
+            izlaz << this->getVrstaNekretine() << "\t";
+            izlaz << this->getKvadrati() << "\t\t";
+            izlaz << this->getBrSoba() << "\t\t";
+            izlaz << this->getBrSpratova() << "\t\t";
+            if (this->getGrad().size() >= 8) izlaz << this->getGrad() << "\t";
+            else izlaz << this->getGrad() << "\t\t";
+            izlaz << this->getUlica() << "\n";
             izlaz.close();
         }
         else {

@@ -8,15 +8,17 @@ int main()
 {
 	
 	Korisnik k;
-	/*std::cin >> k;
-	std::system("cls");
-	k.dodajOglas();*/
 	k.prijava();
-	
-	std::system("cls");
+
+	k.dodajOglas();
 
 	Oglas o;
-	o.izbrisiOglas(k);
+
+	//o.mojiOglasi(k);
+	
+	//o.promijeniStanjeOglasa(k);
+	
+	//o.izbrisiOglas(k);
 	return 0;
 
 }

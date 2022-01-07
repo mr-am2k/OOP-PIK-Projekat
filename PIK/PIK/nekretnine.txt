@@ -1,1 +1,2 @@
-376	15	1	1	Zenic	Zenicka	kuca
+ID	Vrsta	Kvadrati	Broj soba	Broj spratova	Grad		Ulica
+615	1	333		33333		44		fff		gggg

@@ -42,18 +42,30 @@ void Tehnika::setProizvodjac()
 {
     std::cout << "Unesite naziv proizvodjaca: ";
     getline(std::cin, this->proizvodjac);
+    for (int i = 0; i < this->proizvodjac.length(); i++)
+    {
+        if (this->proizvodjac[i] == 32) this->proizvodjac[i] = 95;
+    }
 }
 
 void Tehnika::setProcesor()
 {
     std::cout << "Unesite naziv i model procesora: ";
     getline(std::cin, this->procesor);
+    for (int i = 0; i < this->procesor.length(); i++)
+    {
+        if (this->procesor[i] == 32) this->procesor[i] = 95;
+    }
 }
 
 void Tehnika::setOperativniSistem()
 {
     std::cout << "Unesite naziv operativnog sistema: ";
     getline(std::cin, this->operativniSistem);
+    for (int i = 0; i < this->operativniSistem.length(); i++)
+    {
+        if (this->operativniSistem[i] == 32) this->operativniSistem[i] = 95;
+    }
 }
 
 void Tehnika::setVrstaTehnike()
@@ -121,6 +133,8 @@ const std::vector<Tehnika> Tehnika::getTehnike() const
         std::ifstream ulaz("tehnika.txt", std::ios::app);
         if (ulaz.is_open()) {
             int vrsta;
+            std::string linijaInfo;
+            getline(ulaz, linijaInfo);
             while (ulaz >> tempTehnika->id >> vrsta >> tempTehnika->ram >> tempTehnika->pohrana >> tempTehnika->procesor >> tempTehnika->proizvodjac >> tempTehnika->operativniSistem)
             {
                 tempTehnika->vrstaTeh = static_cast<vrstaTehnike>(vrsta);
@@ -152,10 +166,12 @@ void Tehnika::unosOglasa()
         if (izlaz.is_open()) {
             izlaz << this->getID() << "\t";
             izlaz << this->getVrstaTehnike() << "\t";
-            izlaz << this->getRam()<< "\t";
-            izlaz << this->getPohrana() << "\t";
-            izlaz << this->getProcesor() << "\t";
-            izlaz << this->getProizvodjac()<< "\t";
+            izlaz << this->getRam() << "\t";
+            izlaz << this->getPohrana() << "\t\t";
+            if (this->getProcesor().size() >= 8) izlaz << this->getProcesor() << "\t";
+            else izlaz << this->getProcesor() << "\t\t";
+            if (this->getProizvodjac().size() >= 8) izlaz << this->getProizvodjac() << "\t";
+            else izlaz << this->getProizvodjac() << "\t\t";
             izlaz << this->getOperativniSistem() << "\n";
             izlaz.close();
         }

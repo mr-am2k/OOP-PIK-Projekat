@@ -27,8 +27,11 @@ void Oglas::setID()
 
 void Oglas::setNaslov()
 {
-    std::cout << "Unesite naslov oglasa: ";
-    getline(std::cin,this->naslov);
+    do {
+        std::cout << "Unesite naslov oglasa: ";
+        getline(std::cin, this->naslov);
+        if (this->naslov.size() > 31) std::cout << "Naslov moze sadrzavati maksimalno 32 karaktera!\n";
+    } while (this->naslov.size() > 31);
     for (int i=0;i<this->naslov.length(); i++)
     {
         if (this->naslov[i] == 32) this->naslov[i] = 95;
@@ -37,8 +40,11 @@ void Oglas::setNaslov()
 
 void Oglas::setOpis()
 {
-    std::cout << "Unesite opis oglasa: ";
-    getline(std::cin, this->opis);
+    do {
+        std::cout << "Unesite opis oglasa: ";
+        getline(std::cin, this->opis);
+        if (this->opis.size() > 31) std::cout << "Opis moze sadrzavati maksimalno 32 karaktera!\n";
+    } while (this->opis.size() > 31);
     for (int i = 0; i < this->opis.length(); i++)
     {
         if (this->opis[i] == 32) this->opis[i] = 95;
@@ -47,8 +53,8 @@ void Oglas::setOpis()
 
 void Oglas::setCijena()
 {
-    std::cout << "Unesite cijenu: ";
     do {
+        std::cout << "Unesite cijenu: ";
         std::cin >> this->cijena;
         if (this->cijena < 0) std::cout << "Cijena mora biti veca od 0!\n";
     } while (this->cijena < 0);
@@ -153,6 +159,8 @@ const int Oglas::getBrojAktivnihOglasa() const
         {
             int stanjeBr;
             int kategorijaBr;
+            std::string linijaInfo;
+            getline(ulaz, linijaInfo);
 	        while(ulaz >> temp->id >> temp->autor >> temp->naslov >> temp->opis >> temp->cijena >> stanjeBr >> kategorijaBr)
 	        {
                 if (stanjeBr == 1) *brojac = *brojac + 1;
@@ -184,6 +192,8 @@ const int Oglas::getBrojNedostupnihOglasa() const
         {
             int stanjeBr;
             int kategorijaBr;
+            std::string linijaInfo;
+            getline(ulaz, linijaInfo);
             while (ulaz >> temp->id >> temp->autor >> temp->naslov >> temp->opis >> temp->cijena >> stanjeBr >> kategorijaBr)
             {
                 if (stanjeBr == 0) *brojac = *brojac + 1;
@@ -216,6 +226,8 @@ void Oglas::mojiOglasi(Korisnik& tempKorisnik)
         {
             int stanjeBr;
             int kategorijaBr;
+            std::string linijaInfo;
+            getline(ulaz, linijaInfo);
             std::cout << "Oglasi korisnika " << tempKorisnik.getUsername() << ": \n\n";
             while (ulaz >> temp->id >> temp->autor >> temp->naslov >> temp->opis >> temp->cijena >> stanjeBr >> kategorijaBr)
             {
@@ -273,6 +285,8 @@ void Oglas::promijeniStanjeOglasa(Korisnik& tempKorisnik)
 	{
 		int stanjeBr;
 		int kategorijaBr;
+        std::string linijaInfo;
+        getline(ulaz, linijaInfo);
 		while (ulaz >> temp->id >> temp->autor >> temp->naslov >> temp->opis >> temp->cijena >> stanjeBr >> kategorijaBr)
 		{
 			temp->stanje = static_cast<Stanje>(stanjeBr);
@@ -308,13 +322,13 @@ void Oglas::promijeniStanjeOglasa(Korisnik& tempKorisnik)
                     if (oglasi[i].stanje == dostupno) 
                     {
                     	oglasi[i].stanje = nedostupno;
-                        std::cout << "Stanje oglasa uspojesno promijenjeno iz dostupno u nedostupno!\n";
+                        std::cout << "Stanje oglasa uspjesno promijenjeno iz dostupno u nedostupno!\n";
                     }
 
                     else 
                     {
                         oglasi[i].stanje = dostupno;
-                        std::cout << "Stanje oglasa uspojesno promijenjeno iz nedostupno u dostupno!\n";
+                        std::cout << "Stanje oglasa uspjesno promijenjeno iz nedostupno u dostupno!\n";
 
                     }
                     promijenjeno = true;
@@ -329,14 +343,22 @@ void Oglas::promijeniStanjeOglasa(Korisnik& tempKorisnik)
         try {
             std::ofstream izlaz("pomocniOglasi.txt", std::ios::app);
             if (izlaz.is_open()) {
+                izlaz << "ID\tUsername\tNaslov\t\t\t\tOpis\t\t\t\tCijena\t\tStanje\t\tKategorija\n";
                 for (int i = 0; i < oglasi.size(); i++)
                 {
                     izlaz << oglasi[i].id << "\t";
-                    izlaz << oglasi[i].autor << "\t";
-                    izlaz << oglasi[i].naslov << "\t";
-                    izlaz << oglasi[i].opis << "\t";
-                    izlaz << oglasi[i].cijena << "\t";
-                    izlaz << oglasi[i].stanje << "\t";
+                    if (oglasi[i].autor.size() >= 8) izlaz << oglasi[i].autor << "\t";
+                    else izlaz << oglasi[i].autor << "\t\t";
+                    if (oglasi[i].naslov.size() >= 24) izlaz << oglasi[i].naslov << "\t";
+                    else if (oglasi[i].naslov.size() >= 16 && oglasi[i].naslov.size() < 24) izlaz << oglasi[i].naslov << "\t\t";
+                    else if (oglasi[i].naslov.size() >= 8 && oglasi[i].naslov.size() < 16) izlaz << oglasi[i].naslov << "\t\t\t";
+                    else izlaz << oglasi[i].naslov << "\t\t\t\t";
+                    if (oglasi[i].opis.size() >= 24) izlaz << oglasi[i].opis << "\t";
+                    else if (oglasi[i].opis.size() >= 16 && oglasi[i].opis.size() < 24) izlaz << oglasi[i].opis << "\t\t";
+                    else if (oglasi[i].opis.size() >= 8 && oglasi[i].opis.size() < 16) izlaz << oglasi[i].opis << "\t\t\t";
+                    else izlaz << oglasi[i].opis << "\t\t\t\t";
+                    izlaz << oglasi[i].cijena << "\t\t";
+                    izlaz << oglasi[i].stanje << "\t\t";
                     izlaz << oglasi[i].kategorija << "\n";
                 }
                 izlaz.close();
@@ -367,6 +389,8 @@ void Oglas::izbrisiOglas(Korisnik& tempKorisnik)
     {
         int stanjeBr;
         int kategorijaBr;
+        std::string linijaInfo;
+        getline(ulaz, linijaInfo);
         while (ulaz >> temp->id >> temp->autor >> temp->naslov >> temp->opis >> temp->cijena >> stanjeBr >> kategorijaBr)
         {
             temp->stanje = static_cast<Stanje>(stanjeBr);
@@ -401,11 +425,6 @@ void Oglas::izbrisiOglas(Korisnik& tempKorisnik)
                 {
                     promijenjeno = true;
                     *indexElementaZaBrisanje = i;
-                    
-                }
-                else
-                {
-                    noviOglasi.push_back(oglasi[i]);
                 }
             }
             if (!promijenjeno)
@@ -413,17 +432,32 @@ void Oglas::izbrisiOglas(Korisnik& tempKorisnik)
                 std::cout << "Unijeli ste pogresan ID, pokusajte ponovo!\n";
             }
         } while (!promijenjeno);
+        for (int i = 0; i < oglasi.size(); i++)
+        {
+            if (i != *indexElementaZaBrisanje)
+            {
+                noviOglasi.push_back(oglasi[i]);
+            }
+        }
     	std::ofstream izlaz("pomocniOglasi.txt", std::ios::app);
     	if (izlaz.is_open()) {
+            izlaz << "ID\tUsername\tNaslov\t\t\t\tOpis\t\t\t\tCijena\t\tStanje\t\tKategorija\n";
     		for (int i = 0; i < noviOglasi.size(); i++)
     		{
-    			izlaz << noviOglasi[i].id << "\t";
-    			izlaz << noviOglasi[i].autor << "\t";
-    			izlaz << noviOglasi[i].naslov << "\t";
-    			izlaz << noviOglasi[i].opis << "\t";
-    			izlaz << noviOglasi[i].cijena << "\t";
-    			izlaz << noviOglasi[i].stanje << "\t";
-    			izlaz << noviOglasi[i].kategorija << "\n";
+                izlaz << noviOglasi[i].id << "\t";
+                if (noviOglasi[i].autor.size() >= 8) izlaz << noviOglasi[i].autor << "\t";
+                else izlaz << noviOglasi[i].autor << "\t\t";
+                if (noviOglasi[i].naslov.size() >= 24) izlaz << noviOglasi[i].naslov << "\t";
+                else if (noviOglasi[i].naslov.size() >= 16 && noviOglasi[i].naslov.size() < 24) izlaz << noviOglasi[i].naslov << "\t\t";
+                else if (noviOglasi[i].naslov.size() >= 8 && noviOglasi[i].naslov.size() < 16) izlaz << noviOglasi[i].naslov << "\t\t\t";
+                else izlaz << noviOglasi[i].naslov << "\t\t\t\t";
+                if (noviOglasi[i].opis.size() >= 24) izlaz << noviOglasi[i].opis << "\t";
+                else if (noviOglasi[i].opis.size() >= 16 && noviOglasi[i].opis.size() < 24) izlaz << noviOglasi[i].opis << "\t\t";
+                else if (noviOglasi[i].opis.size() >= 8 && noviOglasi[i].opis.size() < 16) izlaz << noviOglasi[i].opis << "\t\t\t";
+                else izlaz << noviOglasi[i].opis << "\t\t\t\t";
+                izlaz << noviOglasi[i].cijena << "\t\t";
+                izlaz << noviOglasi[i].stanje << "\t\t";
+                izlaz << noviOglasi[i].kategorija << "\n";
     		}
     		izlaz.close();
     		remove("oglasi.txt"); //brise se originalna datoteka
@@ -441,17 +475,20 @@ void Oglas::izbrisiOglas(Korisnik& tempKorisnik)
             std::ofstream unos("novaVozila.txt");
 			if(unos.is_open())
 			{
+                unos << "ID\tGodiste\t\tKilovati\tBroj brzina\tKilometraza\tBoja\t\tTip\t\tVrsta goriva\n";
                 for (int i = 0; i < vozila.size(); i++)
                 {
                     if (vozila[i].getID() != oglasi[*indexElementaZaBrisanje].getID())
                     {
                         unos << vozila[i].getID() << "\t";
-                        unos << vozila[i].getGodiste() << "\t";
-                        unos << vozila[i].getKilovati() << "\t";
-                        unos << vozila[i].getBrBrzina() << "\t";
-                        unos << vozila[i].getKilometraza() << "\t";
-                        unos << vozila[i].getBoja() << "\t";
-                        unos << vozila[i].getTip() << "\t";
+                        unos << vozila[i].getGodiste() << "\t\t";
+                        unos << vozila[i].getKilovati() << "\t\t";
+                        unos << vozila[i].getBrBrzina() << "\t\t";
+                        unos << vozila[i].getKilometraza() << "\t\t";
+                        if(vozila[i].getBoja().size() >= 8) unos << vozila[i].getBoja() << "\t";
+                        else unos << vozila[i].getBoja() << "\t\t";
+                        if(vozila[i].getTip().size() >= 8) unos << vozila[i].getTip() << "\t";
+                        else unos << vozila[i].getTip() << "\t\t";
                         unos << vozila[i].getVrstaGoriva() << "\n";
                     }
                     else {
@@ -474,17 +511,19 @@ void Oglas::izbrisiOglas(Korisnik& tempKorisnik)
             std::ofstream unos("novaNekretnina.txt");
             if (unos.is_open())
             {
+                unos << "ID\tVrsta\tKvadrati\tBroj soba\tBroj spratova\tGrad\t\tUlica\n";
                 for (int i = 0; i < nekretnine.size(); i++)
                 {
                     if (nekretnine[i].getID() != oglasi[*indexElementaZaBrisanje].getID())
                     {
                         unos << nekretnine[i].getID() << "\t";
-                        unos << nekretnine[i].getKvadrati() << "\t";
-                        unos << nekretnine[i].getBrSoba() << "\t";
-                        unos << nekretnine[i].getBrSpratova() << "\t";
-                        unos << nekretnine[i].getGrad() << "\t";
-                        unos << nekretnine[i].getUlica() << "\t";
-                        unos << nekretnine[i].getVrstaNekretnineString() << "\n";
+                        unos << nekretnine[i].getVrstaNekretine() << "\t";
+                        unos << nekretnine[i].getKvadrati() << "\t\t";
+                        unos << nekretnine[i].getBrSoba() << "\t\t";
+                        unos << nekretnine[i].getBrSpratova() << "\t\t";
+                        if(nekretnine[i].getGrad().size() >= 8) unos << nekretnine[i].getGrad() << "\t";
+                        else unos << nekretnine[i].getGrad() << "\t\t";
+                        unos << nekretnine[i].getUlica() << "\n";
                     }
                     else {
                         continue;
@@ -506,16 +545,19 @@ void Oglas::izbrisiOglas(Korisnik& tempKorisnik)
             std::ofstream unos("novaTehnika.txt");
             if (unos.is_open())
             {
+                unos << "ID\tVrsta\tRAM\tPohrana(GB)\tProcesor\tProizvodjac\tOS\n";
                 for (int i = 0; i < tehnika.size(); i++)
                 {
                     if (tehnika[i].getID() != oglasi[*indexElementaZaBrisanje].getID())
                     {
                         unos << tehnika[i].getID() << "\t";
-                        unos << tehnika[i].getVrstaTehnikeString()  << "\t";
+                        unos << tehnika[i].getVrstaTehnike()  << "\t";
                         unos << tehnika[i].getRam() << "\t";
-                        unos << tehnika[i].getPohrana() << "\t";
-                        unos << tehnika[i].getProcesor() << "\t";
-                        unos << tehnika[i].getProizvodjac() << "\t";
+                        unos << tehnika[i].getPohrana() << "\t\t";
+                        if(tehnika[i].getProcesor().size() >= 8) unos << tehnika[i].getProcesor() << "\t";
+                        else unos << tehnika[i].getProcesor() << "\t\t";
+                        if(tehnika[i].getProizvodjac().size() >= 8) unos << tehnika[i].getProizvodjac() << "\t";
+                        else unos << tehnika[i].getProizvodjac() << "\t\t";
                         unos << tehnika[i].getOperativniSistem() << "\n";
                     }
                     else {
@@ -560,6 +602,8 @@ bool Oglas::provjeriID(int a)
     if (ispis.is_open()) {
         int stanjeBr;
         int kategorijaBr;
+        std::string linijaInfo;
+        getline(ispis, linijaInfo);
         while (ispis >> temp->id >> temp->autor >> temp->naslov >> temp->opis >> temp->cijena >> stanjeBr >> kategorijaBr) {
             broj = temp->id;
             temp->stanje = static_cast<Stanje>(stanjeBr);
@@ -592,11 +636,18 @@ std::istream& operator>>(std::istream& unos, Oglas& o)
         std::ofstream izlaz("oglasi.txt", std::ios::app);
         if (izlaz.is_open()) {
             izlaz << o.id << "\t";
-            izlaz << o.autor << "\t";
-            izlaz << o.naslov << "\t";
-            izlaz << o.opis << "\t";
-            izlaz << o.cijena << "\t";
-            izlaz << o.stanje << "\t";
+            if (o.autor.size() >= 8) izlaz << o.autor << "\t";
+            else izlaz << o.autor << "\t\t";
+            if (o.naslov.size() >= 24) izlaz << o.naslov << "\t";
+            else if (o.naslov.size() >= 16 && o.naslov.size() < 24) izlaz << o.naslov << "\t\t";
+            else if (o.naslov.size() >= 8 && o.naslov.size() < 16) izlaz << o.naslov << "\t\t\t";
+            else izlaz << o.naslov << "\t\t\t\t";
+            if (o.opis.size() >= 24) izlaz << o.opis << "\t";
+            else if (o.opis.size() >= 16 && o.opis.size() < 24) izlaz << o.opis << "\t\t";
+            else if (o.opis.size() >= 8 && o.opis.size() < 16) izlaz << o.opis << "\t\t\t";
+            else izlaz << o.opis << "\t\t\t\t";
+            izlaz << o.cijena << "\t\t";
+            izlaz << o.stanje << "\t\t";
             izlaz << o.kategorija << "\n";
             izlaz.close();
         }

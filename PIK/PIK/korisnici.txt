@@ -5,3 +5,4 @@ Amer		Pasanbegovic	pasha		Pasha123!	pasha@gmail.com			061/123-321	musko		0		0
 Ajdin		Bukvic		toreno		Ajdin123!	ajdin@gmail.com			069/696-696	zensko		0		0
 Edin		Tabak		skofara		Edin123!	edin@gmail.com			061/434-323	musko		0		0
 Nevzudin	Buzadjija	namir		Namir123!	namir@gmail.com			050/555-5555	musko		0		0
+Skr		Papa		skrpapa		Skrpapa!123	skr@papa.hehe			123/456-789	musko		0		0

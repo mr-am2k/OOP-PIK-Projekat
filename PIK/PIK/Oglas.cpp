@@ -499,6 +499,7 @@ void Oglas::izbrisiOglas(Korisnik& tempKorisnik)
                 izlaz << noviOglasi[i].kategorija << "\n";
     		}
     		izlaz.close();
+            std::cout << "Oglas sa ID-om: " << oglasi[*indexElementaZaBrisanje].getID() << " je uspjesno uklonjen\n";
     		remove("oglasi.txt"); //brise se originalna datoteka
     		rename("pomocniOglasi.txt", "oglasi.txt"); //mijenja se ime pomocne datoteke u originalno ime datoteke
     	}

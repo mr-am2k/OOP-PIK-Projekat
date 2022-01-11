@@ -160,5 +160,10 @@ void Admin::infoOKorisniku()
 			std::cout << "Broj zavrsenih oglasa: " << korisnici[i].getbrZavrsenihOglasa() << "\n";
 			break;
 		}
+		else
+		{
+			std::cout << "Username: " << *tempUsername << " nije pronadjen!" << std::endl;
+			break;
+		}
 	}
 }

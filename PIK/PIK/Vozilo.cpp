@@ -33,8 +33,12 @@ void Vozilo::setGodiste()
     do {
         std::cout << "Unesite godiste vozila: ";
         std::cin >> this->godiste;
-        if (this->godiste < 1900) std::cout << "Greska, godina ne moze biti ispod 1900.\n";
-    } while (this->godiste < 1900);
+        if (!std::cin) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+        }
+        if (this->godiste < 1900 || this->godiste > 2022) std::cout << "[GRESKA] Uneseni parametar mora biti broj u rasponu 1900 - 2022.\n";
+    } while (this->godiste < 1900 || this->godiste > 2022);
     std::cin.ignore();
 }
 
@@ -43,7 +47,11 @@ void Vozilo::setKilovati()
     do {
         std::cout << "Unesite kilovate: ";
         std::cin >> this->kilovati;
-        if (this->kilovati < 1) std::cout << "Greska, kilovati moraju biti veci od 1\n";
+        if (!std::cin) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+        }
+        if (this->kilovati < 1) std::cout << "[GRESKA] Uneseni parametar mora biti broj veci od 1!\n";
     } while (this->kilovati<1);
     std::cin.ignore();
 }
@@ -53,7 +61,11 @@ void Vozilo::setBrBrzina()
     do {
         std::cout << "Unesite broj brzina: ";
         std::cin >> this->brBrzina;
-        if (this->brBrzina < 1) std::cout << "Greska, broj brzina mora biti veci od 0!\n";
+        if (!std::cin) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+        }
+        if (this->brBrzina < 1) std::cout << "[GRESKA] Uneseni parametar mora biti broj veci od 0!\n";
     } while (this->brBrzina < 1);
     std::cin.ignore();
 }
@@ -63,7 +75,11 @@ void Vozilo::setKilometraza()
     do {
         std::cout << "Unesite broj kilometara: ";
         std::cin >> this->kilometraza;
-        if (this->kilometraza < 0) std::cout << "Greska, broj kilometara ne moze biti negativan!\n";
+        if (!std::cin) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+        }
+        if (this->kilometraza < 0) std::cout << "[GRESKA] Uneseni parametar mora biti broj koji je ne-negativan!\n";
     } while (this->kilometraza < 0);
     std::cin.ignore();
 }
@@ -87,6 +103,10 @@ void Vozilo::setVrstaGoriva()
     {
         std::cout << "Unesite vrstu goriva (1. Dizel 2. Benzin): ";
         std::cin >> *izbor;
+        if (!std::cin) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+        }
         if (*izbor < 1 || *izbor >2) std::cout << "Neispravan unos, probajte ponovo!\n";
     } while (*izbor < 1 || *izbor > 2);
     this->vrsta = static_cast<vrstaGoriva>(*izbor);

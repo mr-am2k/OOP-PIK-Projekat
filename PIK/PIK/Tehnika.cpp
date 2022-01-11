@@ -23,7 +23,11 @@ void Tehnika::setRam()
     do {
         std::cout << "Unesite kolicinu RAM-a(MB): ";
         std::cin >> this->ram;
-        if (this->ram < 1) std::cout << "RAM mora biti veci od 1 MB!\n";
+        if (!std::cin) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+        }
+        if (this->ram < 1) std::cout << "[GRESKA] Uneseni parametar mora biti pozitivan broj!\n";
     } while (this->ram < 1);
     std::cin.ignore();
 }
@@ -33,7 +37,11 @@ void Tehnika::setPohrana()
     do {
         std::cout << "Unesite kolicinu memorije za pohranu(GB): ";
         std::cin >> this->pohrana;
-        if (this->pohrana < 1) std::cout << "Pohrana mora biti veca od 1 GB!\n";
+        if (!std::cin) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+        }
+        if (this->pohrana < 1) std::cout << "[GRESKA] Uneseni parametar mora biti pozitivan broj!\n";
     } while (this->pohrana < 1);
     std::cin.ignore();
 }
@@ -75,6 +83,10 @@ void Tehnika::setVrstaTehnike()
     {
         std::cout << "Unesite vrstu tehnike (1. Laptop 2. Racunar 3. Mobitel): ";
         std::cin >> *izbor;
+        if (!std::cin) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+        }
         if (*izbor < 1 || *izbor >3) std::cout << "Neispravan unos, probajte ponovo!\n";
     } while (*izbor < 1 || *izbor > 3);
     this->vrstaTeh = static_cast<vrstaTehnike>(*izbor);

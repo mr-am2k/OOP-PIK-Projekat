@@ -24,7 +24,11 @@ void Nekretnina::setKvadrati()
     do {
         std::cout << "Unesite broj kvadrata: ";
         std::cin >> this->kvadrati;
-        if (this->kvadrati < 1) std::cout << "Broj kvadrata mora biti veci od 1!\n";
+        if (!std::cin) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+        }
+        if (this->kvadrati < 1) std::cout << "[GRESKA] Uneseni parametar mora biti pozitivan broj!\n";
     } while (this->kvadrati<1);
     std::cin.ignore();
 }
@@ -34,7 +38,11 @@ void Nekretnina::setBrSoba()
     do {
         std::cout << "Unesite broj soba: ";
         std::cin >> this->brSoba;
-        if (this->brSoba < 1) std::cout << "Broj soba mora biti veci od 0\n";
+        if (!std::cin) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+        }
+        if (this->brSoba < 1) std::cout << "[GRESKA] Uneseni parametar mora biti pozitivan broj!\n";
     } while (this->brSoba < 1);
     std::cin.ignore();
 }
@@ -44,7 +52,11 @@ void Nekretnina::setBrSpratova()
     do {
         std::cout << "Unesite broj spratova: ";
         std::cin >> this->brSpratova;
-        if (this->brSpratova < 1) std::cout << "Broj spratova mora biti veci do 1!\n";
+        if (!std::cin) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+        }
+        if (this->brSpratova < 1) std::cout << "[GRESKA] Uneseni parametar mora biti pozitivan broj!\n";
     } while (this->brSpratova < 1);
     std::cin.ignore();
 }
@@ -76,6 +88,10 @@ void Nekretnina::setVrstaNekretnine()
     {
         std::cout << "Unesite vrstu nekretnine (1. Kuca 2. Stan 3.Vikendica 4. Apartman): ";
         std::cin >> *izbor;
+        if (!std::cin) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+        }
         if (*izbor < 1 || *izbor >4) std::cout << "Neispravan unos, probajte ponovo!\n";
     } while (*izbor < 1 || *izbor > 4);
     this->vrstaNekret = static_cast<vrstaNekretnine>(*izbor);

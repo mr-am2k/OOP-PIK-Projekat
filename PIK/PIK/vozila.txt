@@ -1,2 +1,11 @@
 ID	Godiste		Kilovati	Broj brzina	Kilometraza	Boja		Tip		Vrsta goriva
 245	2015		66		5		111111		crna		limuzina	1
+383	2022		123		5		2		crna		limuzina	2
+678	0		123		1		2		1		2		2
+679	2010		2310		6		1		crna		limuzina	1
+925	2021		180		7		0		siva		limuzina	2
+269	2020		1		1		0		crna		limuzina	2
+989	2002		123		12		1		kslajf		lkq		1
+474	2020		1234		12		2		skrpapa		skrskr		1
+366	2020		22		2		2		2		2		2
+536	2020		21		5		1		1		1		1

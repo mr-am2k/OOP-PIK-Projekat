@@ -34,11 +34,8 @@ void Korisnik::setUsername()
 	bool postoji;
 	do {
 		postoji = false;
-		do {
-			std::cout << "Unesite username: ";
-			std::cin >> this->username;
-			if (this->username.size() < 3) std::cout << "Username mora biti minimalno 3 karaktera!\n";
-		} while (this->username.size() < 3);
+		std::cout << "Unesite username: ";
+		std::cin >> this->username;
 		for (int i = 0; i < korisnici.size(); i++) {
 			if (this->username == korisnici[i].getUsername()) { //Iskljucujemo mogucnost da se korisnik registruje sa username-om koji vec postoji
 				std::cout << "[GRESKA]: Username vec postoji!\n";

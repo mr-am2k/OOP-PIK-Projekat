@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <vector>
 #include <fstream>
+#include <string>
 
 #include "Nekretnina.h"
 #include "Tehnika.h"
@@ -31,7 +32,7 @@ void Oglas::setNaslov()
         std::cout << "Unesite naslov oglasa: ";
         getline(std::cin, this->naslov);
         if (this->naslov.size() > 31) std::cout << "Naslov moze sadrzavati maksimalno 32 karaktera!\n";
-    } while (this->naslov.size() > 31);
+    } while (this->naslov.size() > 31 || this->naslov.empty());
     for (int i=0;i<this->naslov.length(); i++)
     {
         if (this->naslov[i] == 32) this->naslov[i] = 95;
@@ -44,7 +45,7 @@ void Oglas::setOpis()
         std::cout << "Unesite opis oglasa: ";
         getline(std::cin, this->opis);
         if (this->opis.size() > 31) std::cout << "Opis moze sadrzavati maksimalno 32 karaktera!\n";
-    } while (this->opis.size() > 31);
+    } while (this->opis.size() > 31 || this->opis.empty());
     for (int i = 0; i < this->opis.length(); i++)
     {
         if (this->opis[i] == 32) this->opis[i] = 95;
@@ -56,7 +57,11 @@ void Oglas::setCijena()
     do {
         std::cout << "Unesite cijenu: ";
         std::cin >> this->cijena;
-        if (this->cijena < 0) std::cout << "Cijena mora biti veca od 0!\n";
+        if (!std::cin) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+        }
+        if (this->cijena < 0) std::cout << "[GRESKA] Uneseni parametar mora biti broj koji je ne-negativan!\n";
     } while (this->cijena < 0);
     std::cin.ignore();
 }
@@ -68,7 +73,11 @@ void Oglas::setStanje()
     {
         std::cout << "Stanje(nedostupno: 0, dostupno: 1): ";
         std::cin >> *izbor;
-        if (*izbor < 0 || *izbor > 1) std::cout << "[GRESKA]: Stanje moze biti samo 0 ili 1.\n";
+        if (!std::cin) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+        }
+        if (*izbor < 0 || *izbor > 1) std::cout << "Neispravan unos, probajte ponovo!\n";
     } while (*izbor < 0 || *izbor > 1);
     this->stanje = static_cast<Stanje>(*izbor);
     std::cin.ignore();
@@ -81,6 +90,10 @@ void Oglas::setKategorija()
     {
         std::cout << "Unesite kategoriju oglasa (1. Vozilo 2. Nekretnina 3. Tehnika): ";
         std::cin >> *izbor;
+        if (!std::cin) {
+            std::cin.clear();
+            std::cin.ignore(100, '\n');
+        }
         if (*izbor < 1 || *izbor >3) std::cout << "Neispravan unos, probajte ponovo!\n";
     } while (*izbor < 1 || *izbor > 3);
     this->kategorija = static_cast<Kategorija>(*izbor);
@@ -499,7 +512,6 @@ void Oglas::izbrisiOglas(Korisnik& tempKorisnik)
                 izlaz << noviOglasi[i].kategorija << "\n";
     		}
     		izlaz.close();
-            std::cout << "Oglas sa ID-om: " << oglasi[*indexElementaZaBrisanje].getID() << " je uspjesno uklonjen\n";
     		remove("oglasi.txt"); //brise se originalna datoteka
     		rename("pomocniOglasi.txt", "oglasi.txt"); //mijenja se ime pomocne datoteke u originalno ime datoteke
     	}

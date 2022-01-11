@@ -79,8 +79,8 @@ void Vozilo::setKilometraza()
             std::cin.clear();
             std::cin.ignore(100, '\n');
         }
-        if (this->kilometraza < 0) std::cout << "[GRESKA] Uneseni parametar mora biti broj koji je ne-negativan!\n";
-    } while (this->kilometraza < 0);
+        if (this->kilometraza < 1) std::cout << "[GRESKA] Uneseni parametar mora biti broj koji je ne-negativan!\n";
+    } while (this->kilometraza < 1);
     std::cin.ignore();
 }
 

@@ -61,8 +61,8 @@ void Oglas::setCijena()
             std::cin.clear();
             std::cin.ignore(100, '\n');
         }
-        if (this->cijena < 0) std::cout << "[GRESKA] Uneseni parametar mora biti broj koji je ne-negativan!\n";
-    } while (this->cijena < 0);
+        if (this->cijena < 1) std::cout << "[GRESKA] Uneseni parametar mora biti pozitivan broj!\n";
+    } while (this->cijena < 1);
     std::cin.ignore();
 }
 
@@ -71,14 +71,14 @@ void Oglas::setStanje()
     std::shared_ptr<int> izbor = std::make_shared<int>();
     do
     {
-        std::cout << "Stanje(nedostupno: 0, dostupno: 1): ";
+        std::cout << "Stanje(nedostupno: 1, dostupno: 2): ";
         std::cin >> *izbor;
         if (!std::cin) {
             std::cin.clear();
             std::cin.ignore(100, '\n');
         }
-        if (*izbor < 0 || *izbor > 1) std::cout << "Neispravan unos, probajte ponovo!\n";
-    } while (*izbor < 0 || *izbor > 1);
+        if (*izbor < 1 || *izbor > 2) std::cout << "Neispravan unos, probajte ponovo!\n";
+    } while (*izbor < 1 || *izbor > 2);
     this->stanje = static_cast<Stanje>(*izbor);
     std::cin.ignore();
 }

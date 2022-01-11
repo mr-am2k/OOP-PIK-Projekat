@@ -2,7 +2,7 @@
 #include<iostream>
 #include "Korisnik.h"
 enum Stanje {
-	nedostupno, dostupno
+	nedostupno=1, dostupno
 };
 enum Kategorija {
 	vozilo=1, nekretnina, tehnika 

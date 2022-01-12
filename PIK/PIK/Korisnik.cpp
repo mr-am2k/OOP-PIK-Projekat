@@ -215,7 +215,7 @@ bool Korisnik::prijava()
 	return postoji;
 }
 
-void Korisnik::promijeniSifru()
+void Korisnik::promijeniSifru()	//poziva setter sifre i mijenja vrijednost sifre u korisnici.txt na novu sifru
 {
 	this->setSifra();
 	this->ucitajKorisnike();

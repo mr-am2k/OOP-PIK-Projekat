@@ -227,7 +227,7 @@ const int Oglas::getBrojNedostupnihOglasa() const
     }
 }
 
-const std::vector<Oglas> Oglas::getOglasi(bool filteri[]) const
+const std::vector<Oglas> Oglas::getOglasi(bool filteri[]) const //uzima oglase iz oglasi.txt, smjesta ih u vektor oglasa, te postavlja vrijednosti u nizu filteri na false
 {
     std::vector<Oglas> oglasi;
     auto tempOglas = std::make_shared<Oglas>();
@@ -782,7 +782,7 @@ bool Oglas::trebaBrisati(int kategorija)
     }
 }
 
-std::string Oglas::filtrirajPoCijeni(std::vector<Oglas> &oglasi)
+std::string Oglas::filtrirajPoCijeni(std::vector<Oglas> &oglasi)    //korisnik unosi min i max cijenu, te izbacuje iz vektora oglase izvan unesenog opsega
 {
     int minCijena;
     int maxCijena;
@@ -790,7 +790,7 @@ std::string Oglas::filtrirajPoCijeni(std::vector<Oglas> &oglasi)
     std::cin >> minCijena;
     std::cout << "Unesite maksimalnu cijenu: ";
     std::cin >> maxCijena;
-    std::vector<Oglas> noviVektor;
+    std::vector<Oglas> noviVektor;  //novi vektor u koji se smjestaju oglasi unutar unesenog opsega
     for (int i = 0; i < oglasi.size(); i++) {
         if (oglasi[i].cijena < minCijena || oglasi[i].cijena > maxCijena) {
             continue;
@@ -799,16 +799,16 @@ std::string Oglas::filtrirajPoCijeni(std::vector<Oglas> &oglasi)
             noviVektor.push_back(oglasi[i]);
         }
     }
-    oglasi = noviVektor;
-    return (std::to_string(minCijena) + " - " + std::to_string(maxCijena));
+    oglasi = noviVektor;    //postavlja vektor oglasa na noviVektor u koji su smjesteni oglasi koji pripadaju cjenovnom opsegu
+    return (std::to_string(minCijena) + " - " + std::to_string(maxCijena)); //vraca string koji predstavlja opseg cijena radi ispisa filtera u mainu
 }
 
-std::string Oglas::filtrirajPoKategoriji(std::vector<Oglas> &oglasi)
+std::string Oglas::filtrirajPoKategoriji(std::vector<Oglas> &oglasi)    //korisnik unosi kategoriju, iz vektora se izbacuju oglasi ostalih kategorija
 {
     int kategorija;
     std::cout << "Unesite broj kategorije koju zelite vidjeti (1 - vozila, 2 - nekretnine, 3 - tehnika): ";
     std::cin >> kategorija;
-    std::vector<Oglas> noviVektor;
+    std::vector<Oglas> noviVektor;  //novi vektor u koji se smjestaju oglasi sa unesenom kategorijom
     for (int i = 0; i < oglasi.size(); i++) {
         if (oglasi[i].getKategorija() != kategorija) {
             continue;
@@ -817,11 +817,11 @@ std::string Oglas::filtrirajPoKategoriji(std::vector<Oglas> &oglasi)
             noviVektor.push_back(oglasi[i]);
         }
     }
-    oglasi = noviVektor;
-    return std::to_string(kategorija);
+    oglasi = noviVektor;    //postavlja vektor oglasa na noviVektor u koji su smjesteni oglasi sa unesenom kategorijom
+    return std::to_string(kategorija);  //vraca string unesene kategorije za ispis filtera u mainu
 }
 
-void Oglas::sortirajPoCijeniRastuci(std::vector<Oglas> &oglasi)
+void Oglas::sortirajPoCijeniRastuci(std::vector<Oglas> &oglasi) //sortira oglase po cijeni u rastucem poretku
 {
     for (int i = 0; i < oglasi.size(); i++) {
         for (int j = 0; j < i; j++) {
@@ -832,7 +832,7 @@ void Oglas::sortirajPoCijeniRastuci(std::vector<Oglas> &oglasi)
     }
 }
 
-void Oglas::sortirajPoCijeniOpadajuci(std::vector<Oglas> &oglasi)
+void Oglas::sortirajPoCijeniOpadajuci(std::vector<Oglas> &oglasi)   //sortira oglase po cijeni u opadajucem poretku
 {
     for (int i = 0; i < oglasi.size(); i++) {
         for (int j = 0; j < i; j++) {
@@ -843,7 +843,7 @@ void Oglas::sortirajPoCijeniOpadajuci(std::vector<Oglas> &oglasi)
     }
 }
 
-std::string Oglas::pretragaPoRijeci(std::vector<Oglas> &oglasi)
+std::string Oglas::pretragaPoRijeci(std::vector<Oglas> &oglasi) //korisnik unosi kljucnu rijec, te se iz vektora izbacuju svi oglasi u cijem naslovu nema unesene rijeci (funkcionise i sa vise rijeci sve dok se cijeli string podudara, ali nije predvidjeno da se koristi)
 {
     std::string rijec;
     std::cout << "Unesite kljucnu rijec za pretragu: ";
@@ -851,14 +851,14 @@ std::string Oglas::pretragaPoRijeci(std::vector<Oglas> &oglasi)
     std::cin.ignore();
     std::vector<Oglas> noviVektor;
     for (int i = 0; i < oglasi.size(); i++) {
-        if (oglasi[i].naslov.find(rijec) == std::string::npos) {
+        if (oglasi[i].naslov.find(rijec) == std::string::npos) {    //trazi u naslovu rijec, funkcija vraca npos u slucaju da ne postoji rijec u naslovu
             continue;
         }
         else {
             noviVektor.push_back(oglasi[i]);
         }
     }
-    oglasi = noviVektor;
+    oglasi = noviVektor;    //postavlja vektor oglasa na noviVektor u koji su smjesteni oglasi koji u naslovu imaju kljucnu rijec
     return rijec;
 }
 

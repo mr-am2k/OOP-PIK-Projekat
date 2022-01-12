@@ -93,10 +93,10 @@ int pretragaMenu() {
 	}
 }
 
-void ispisiFiltere(bool filteri[], std::string vrijednostiFiltera[]) {
+void ispisiFiltere(bool filteri[], std::string vrijednostiFiltera[]) {	//ispisuje sve aktivne filtere na pretrazi oglasa na osnovu vrijednosit u nizovima (vrijednost: 0 - opseg cijene, 1 - kategorija, 2 - kljucna rijec)
 	bool nemaAktivnihFiltera = true;
 	for (int i = 0; i < 5; i++) {
-		if (filteri[i] == true) nemaAktivnihFiltera = false;
+		if (filteri[i] == true) nemaAktivnihFiltera = false;			//provjera da li ima aktivnih filtera, u slucaju da nema izlazi iz funkcije
 	}
 	if (nemaAktivnihFiltera) {
 		std::cout << "Nema aktivnih filtera!" << std::endl;
@@ -129,7 +129,7 @@ int main(){
 	Oglas o;
 	bool filteri[5];
 	std::string vrijednostiFiltera[3];
-	std::vector<Oglas> oglasi = o.getOglasi(filteri);
+	std::vector<Oglas> oglasi = o.getOglasi(filteri);	//uzima oglase iz oglasi.txt i sprema u vektor, te postavlja sve filtere na false
 	int izbor;
 	while (izbor = glavniMenu()) {
 		switch (izbor) {
@@ -158,7 +158,7 @@ int main(){
 					case 4:
 						int izbor3;
 						while (izbor3 = pretragaMenu()) {
-							switch (izbor3) {
+							switch (izbor3) {	//svaka opcija unosa novog filtera ce postaviti vrijednosti u nizovima vrijednostFiltera i filteri, ispisati sve oglase nakon filtriranja/sortiranja, te ispisati filtere koji su aktivni
 							case 1:
 								system("cls");
 								vrijednostiFiltera[0] = o.filtrirajPoCijeni(oglasi);
@@ -198,7 +198,7 @@ int main(){
 								break;
 							case 6:
 								system("cls");
-								oglasi = o.getOglasi(filteri);
+								oglasi = o.getOglasi(filteri);	//ponovo uzima oglase iz oglasi.txt
 								std::cout << "Filteri uspjesno resetovani!";
 								break;
 							}

@@ -126,8 +126,8 @@ void ispisiFiltere(bool filteri[], std::string vrijednostiFiltera[]) {	//ispisuj
 int main(){
 	HWND console = GetConsoleWindow();
 	RECT r;
-	GetWindowRect(console, &r); //stores the console's current dimensions
-	MoveWindow(console, r.left, r.top, 1200, 600, TRUE); // 800 width, 100 height
+	GetWindowRect(console, &r); //smjestaju se vrijednosti trenutnih dimenzija prozora konzole
+	MoveWindow(console, r.left, r.top, 1200, 600, TRUE); //mijenjaju se vrijednosti duzine i sirine na nove 1200x600
 
 	Korisnik k;
 	Admin a;

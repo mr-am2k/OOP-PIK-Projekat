@@ -1,3 +1,4 @@
 ID	Vrsta	Kvadrati	Broj soba	Broj spratova	Grad		Ulica
 615	1	333		33333		44		fff		gggg
-
+544	2	150		4		1		Zeniac		Zenicka
+698	3	44		2		1		gfdgfd		fgdgd

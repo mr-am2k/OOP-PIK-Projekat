@@ -167,6 +167,9 @@ const std::vector<Tehnika> Tehnika::getTehnike() const
 
 void Tehnika::unosOglasa()
 {
+    std::cout << "--------------------------------------------------------------\n";
+    std::cout << "\t*** UNOS DETALJNIH INFORMACIJA TEHNIKE ***\n";
+    std::cout << "--------------------------------------------------------------\n";
     this->setVrstaTehnike();
     this->setRam();
     this->setPohrana();
@@ -195,5 +198,7 @@ void Tehnika::unosOglasa()
         std::cout << greska;
         exit(0);
     }
-
+    std::cout << "--------------------------------------------------------------\n";
+    std::cout << "\t*** USPJESNO STE DODALI NOVI OGLAS ***\n";
+    std::cout << "--------------------------------------------------------------\n";
 }

@@ -8,7 +8,6 @@
 #include <fstream>
 #include <Windows.h>
 
-
 std::vector<Korisnik> korisnici;
 
 Korisnik::Korisnik() : Osoba()

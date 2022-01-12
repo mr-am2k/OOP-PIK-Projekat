@@ -190,6 +190,9 @@ const std::vector<Vozilo> Vozilo::getVozila() const
 
 void Vozilo::unosOglasa()
 {
+    std::cout << "--------------------------------------------------------------\n";
+    std::cout << "\t*** UNOS DETALJNIH INFORMACIJA VOZILA ***\n";
+    std::cout << "--------------------------------------------------------------\n";
     this->setGodiste();
     this->setKilovati();
     this->setBrBrzina();
@@ -221,4 +224,7 @@ void Vozilo::unosOglasa()
         std::cout << greska;
         exit(0);
     }
+    std::cout << "--------------------------------------------------------------\n";
+    std::cout << "\t*** USPJESNO STE DODALI NOVI OGLAS ***\n";
+    std::cout << "--------------------------------------------------------------\n";
 }

@@ -1,9 +1,10 @@
-	#include <iostream>
+#include <iostream>
 #include "Korisnik.h"
 #include "Admin.h"
 #include "Oglas.h"
 #include "Vozilo.h"
 #include <conio.h>
+#include <windows.h>
 
 int glavniMenu() {
 	int izbor;
@@ -123,6 +124,10 @@ void ispisiFiltere(bool filteri[], std::string vrijednostiFiltera[]) {	//ispisuj
 }
 
 int main(){
+	HWND console = GetConsoleWindow();
+	RECT r;
+	GetWindowRect(console, &r); //stores the console's current dimensions
+	MoveWindow(console, r.left, r.top, 1200, 600, TRUE); // 800 width, 100 height
 
 	Korisnik k;
 	Admin a;

@@ -175,6 +175,9 @@ const std::vector<Nekretnina> Nekretnina::getNekretnine() const
 
 void Nekretnina::unosOglasa()
 {
+    std::cout << "--------------------------------------------------------------\n";
+    std::cout << "\t*** UNOS DETALJNIH INFORMACIJA NEKRETNINE ***\n";
+    std::cout << "--------------------------------------------------------------\n";
     this->setVrstaNekretnine();
     this->setKvadrati();
     this->setBrSoba();
@@ -203,4 +206,7 @@ void Nekretnina::unosOglasa()
         std::cout << greska;
         exit(0);
     }
+    std::cout << "--------------------------------------------------------------\n";
+    std::cout << "\t*** USPJESNO STE DODALI NOVI OGLAS ***\n";
+    std::cout << "--------------------------------------------------------------\n";
 }

@@ -675,7 +675,8 @@ bool Oglas::provjeriID(int a)
 
 void Oglas::ispisOglasa(std::vector<Oglas> oglasi)
 {
-    std::cout << "ID\tUsername\t\tNaslov\t\t\tOpis\t\t\tCijena\t\tStanje\t\tKategorija\n";
+    std::cout << "ID\tUsername\t\tNaslov\t\t\tOpis\t\t\t\tCijena\t\tStanje\t\tKategorija\n";
+    std::cout << "------------------------------------------------------------------------------------------------------------------------------------\n";
     for (int i = 0; i < oglasi.size(); i++) {
         std::cout << oglasi[i].id << "\t";
         if (oglasi[i].autor.size() >= 8) std::cout << oglasi[i].autor << "\t";
@@ -693,6 +694,7 @@ void Oglas::ispisOglasa(std::vector<Oglas> oglasi)
         std::cout << oglasi[i].kategorija;
         std::cout << std::endl;
     }
+    std::cout << "------------------------------------------------------------------------------------------------------------------------------------\n";
 }
 
 void Oglas::ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID)
@@ -702,9 +704,11 @@ void Oglas::ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID)
         return;
     }
     int indexZaIspis;
+    std::string usernameAutora;
     for (int i = 0; i < oglasi.size(); i++) {
         if (oglasi[i].getID() == ID) {
             indexZaIspis = i;
+            usernameAutora = oglasi[i].getAutor();
         }
     }
     switch (oglasi[indexZaIspis].getKategorija())
@@ -712,7 +716,8 @@ void Oglas::ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID)
         case vozilo: {
             auto tempVozilo = std::make_shared<Vozilo>();
             std::vector<Vozilo> vozila = tempVozilo->getVozila();
-            std::cout << "ID\tGodiste\t\tKilovati\tBroj brzina\tKilometraza\tBoja\t\tTip\t\tVrsta goriva\n";
+            std::cout << "\nID\tGodiste\t\tKilovati\tBroj brzina\tKilometraza\tBoja\t\tTip\t\tVrsta goriva\n";
+            std::cout << "------------------------------------------------------------------------------------------------------------------------------------\n";
             for (int i = 0; i < vozila.size(); i++)
             {
                 if (vozila[i].getID() == oglasi[indexZaIspis].getID())
@@ -734,7 +739,8 @@ void Oglas::ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID)
         case nekretnina: {
             auto tempNekretnina = std::make_shared<Nekretnina>();
             std::vector<Nekretnina> nekretnine = tempNekretnina->getNekretnine();
-            std::cout << "ID\tVrsta\tKvadrati\tBroj soba\tBroj spratova\tGrad\t\tUlica\n";
+            std::cout << "\nID\tVrsta\tKvadrati\tBroj soba\tBroj spratova\tGrad\t\tUlica\n";
+            std::cout << "------------------------------------------------------------------------------------------------------------------------------------\n";
             for (int i = 0; i < nekretnine.size(); i++)
             {
                 if (nekretnine[i].getID() == oglasi[indexZaIspis].getID())
@@ -754,7 +760,8 @@ void Oglas::ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID)
         case tehnika: {
             auto tempTehnika = std::make_shared<Tehnika>();
             std::vector<Tehnika> tehnika = tempTehnika->getTehnike();
-            std::cout << "ID\tVrsta\tRAM\tPohrana(GB)\tProcesor\tProizvodjac\tOS\n";
+            std::cout << "\nID\tVrsta\tRAM\tPohrana(GB)\tProcesor\tProizvodjac\tOS\n";
+            std::cout << "------------------------------------------------------------------------------------------------------------------------------------\n";
             for (int i = 0; i < tehnika.size(); i++)
             {
                 if (tehnika[i].getID() == oglasi[indexZaIspis].getID())
@@ -773,6 +780,17 @@ void Oglas::ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID)
             break;
         }
     }
+    std::cout << "------------------------------------------------------------------------------------------------------------------------------------\n";
+    std::string brTelefonaAutora;
+    auto temp = std::make_shared<Korisnik>();
+    std::vector<Korisnik> korisnici = temp->getKorisnike();
+    for (int i = 0; i < korisnici.size(); i++) {
+        if (korisnici[i].getUsername() == usernameAutora) {
+            brTelefonaAutora = korisnici[i].getBrojTelefona();
+            break;
+        }
+    }
+    std::cout << "\nBroj telefona autora oglasa je: " << brTelefonaAutora << std::endl;
 }
 
 bool Oglas::trebaBrisati(int kategorija)
@@ -869,7 +887,9 @@ void Oglas::unosOglasa()
 
 std::istream& operator>>(std::istream& unos, Oglas& o)
 {
-    std::cout << "UNOS OGLASA\n";
+    std::cout << "--------------------------------------------------------------\n";
+    std::cout << "\t*** UNOS OSNOVNIH INFORMACIJA OGLASA ***\n";
+    std::cout << "--------------------------------------------------------------\n";
     o.setID();
     o.setNaslov();
     o.setOpis();

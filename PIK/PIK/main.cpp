@@ -93,13 +93,43 @@ int pretragaMenu() {
 	}
 }
 
+void ispisiFiltere(bool filteri[], std::string vrijednostiFiltera[]) {
+	bool nemaAktivnihFiltera = true;
+	for (int i = 0; i < 5; i++) {
+		if (filteri[i] == true) nemaAktivnihFiltera = false;
+	}
+	if (nemaAktivnihFiltera) {
+		std::cout << "Nema aktivnih filtera!" << std::endl;
+		return;
+	}
+	std::cout << std::endl << "Aktivni filteri: " << std::endl;
+	if (filteri[0]) {
+		std::cout << "Filter po cijenama u opsegu: " << vrijednostiFiltera[0] << std::endl;
+	}
+	if (filteri[1]) {
+		std::cout << "Filter po kategoriji: " << vrijednostiFiltera[1] << std::endl;
+	}
+	if (filteri[2]) {
+		std::cout << "Cijene sortirane rastuci." << std::endl;
+	}
+	if (filteri[3]) {
+		std::cout << "Cijene sortirane opadajuci. " << std::endl;
+	}
+	if (filteri[4]) {
+		std::cout << "Filter po kljucnoj rijeci: " << vrijednostiFiltera[2] << std::endl;
+	}
+	
+	
+}
 
 int main(){
 
 	Korisnik k;
 	Admin a;
 	Oglas o;
-	std::vector<Oglas> oglasi = o.getOglasi();
+	bool filteri[5];
+	std::string vrijednostiFiltera[3];
+	std::vector<Oglas> oglasi = o.getOglasi(filteri);
 	int izbor;
 	while (izbor = glavniMenu()) {
 		switch (izbor) {
@@ -131,32 +161,44 @@ int main(){
 							switch (izbor3) {
 							case 1:
 								system("cls");
-								o.filtrirajPoCijeni(oglasi);
+								vrijednostiFiltera[0] = o.filtrirajPoCijeni(oglasi);
+								filteri[0] = true;
 								o.ispisOglasa(oglasi);
+								ispisiFiltere(filteri, vrijednostiFiltera);
 								break;
 							case 2:
 								system("cls");
-								o.filtrirajPoKategoriji(oglasi);
+								vrijednostiFiltera[1] = o.filtrirajPoKategoriji(oglasi);
+								filteri[1] = true;
 								o.ispisOglasa(oglasi);
+								ispisiFiltere(filteri, vrijednostiFiltera);
 								break;
 							case 3:
 								system("cls");
 								o.sortirajPoCijeniRastuci(oglasi);
+								filteri[2] = true;
+								filteri[3] = false;
 								o.ispisOglasa(oglasi);
+								ispisiFiltere(filteri, vrijednostiFiltera);
 								break;
 							case 4:
 								system("cls");
 								o.sortirajPoCijeniOpadajuci(oglasi);
+								filteri[3] = true;
+								filteri[2] = false;
 								o.ispisOglasa(oglasi);
+								ispisiFiltere(filteri, vrijednostiFiltera);
 								break;
 							case 5:
 								system("cls");
-								o.pretragaPoRijeci(oglasi);
+								vrijednostiFiltera[2] = o.pretragaPoRijeci(oglasi);
+								filteri[4] = true;
 								o.ispisOglasa(oglasi);
+								ispisiFiltere(filteri, vrijednostiFiltera);
 								break;
 							case 6:
 								system("cls");
-								oglasi = o.getOglasi();
+								oglasi = o.getOglasi(filteri);
 								std::cout << "Filteri uspjesno resetovani!";
 								break;
 							}
@@ -166,11 +208,11 @@ int main(){
 						break;
 					case 5:
 						system("cls");
-						o.ispisOglasa(o.getOglasi());
+						o.ispisOglasa(o.getOglasi(filteri));
 						int ID;
 						std::cout << "Unesite ID oglasa o kojem zeljite detaljne informacije: ";
 						std::cin >> ID;
-						o.ispisOglasaDetaljno(o.getOglasi(), ID);
+						o.ispisOglasaDetaljno(o.getOglasi(filteri), ID);
 						break;
 					case 6:
 						system("cls");

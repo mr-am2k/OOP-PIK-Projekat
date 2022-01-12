@@ -34,7 +34,7 @@ public:
 	std::string getKategorijaString();
 	const int getBrojAktivnihOglasa() const;
 	const int getBrojNedostupnihOglasa() const;
-	const std::vector<Oglas> getOglasi() const;
+	const std::vector<Oglas> getOglasi(bool filteri[]) const;
 	void mojiOglasi(Korisnik& tempKorisnik);
 	void promijeniStanjeOglasa(Korisnik& tempKorisnik);
 	void izbrisiOglas(Korisnik& tempKorisnik);
@@ -43,11 +43,11 @@ public:
 	void ispisOglasa(std::vector<Oglas> oglasi);
 	void ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID);
 	bool trebaBrisati(int kategorija);
-	void filtrirajPoCijeni(std::vector<Oglas> &oglasi);
-	void filtrirajPoKategoriji(std::vector<Oglas> &oglasi);
+	std::string filtrirajPoCijeni(std::vector<Oglas> &oglasi);
+	std::string filtrirajPoKategoriji(std::vector<Oglas> &oglasi);
 	void sortirajPoCijeniRastuci(std::vector<Oglas> &oglasi);
 	void sortirajPoCijeniOpadajuci(std::vector<Oglas> &oglasi);
-	void pretragaPoRijeci(std::vector<Oglas> &oglasi);
+	std::string pretragaPoRijeci(std::vector<Oglas> &oglasi);
 	friend std::istream& operator>>(std::istream& unos, Oglas& o);
 	virtual void unosOglasa();
 	virtual ~Oglas() = default;

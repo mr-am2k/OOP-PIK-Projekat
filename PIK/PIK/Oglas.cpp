@@ -227,7 +227,7 @@ const int Oglas::getBrojNedostupnihOglasa() const
     }
 }
 
-const std::vector<Oglas> Oglas::getOglasi() const
+const std::vector<Oglas> Oglas::getOglasi(bool filteri[]) const
 {
     std::vector<Oglas> oglasi;
     auto tempOglas = std::make_shared<Oglas>();
@@ -262,7 +262,9 @@ const std::vector<Oglas> Oglas::getOglasi() const
         std::cout << greska;
         exit(0);
     }
-
+    for (int i = 0; i < 5; i++) {
+        filteri[i] = false;
+    }
     return oglasi;
 }
 
@@ -695,6 +697,10 @@ void Oglas::ispisOglasa(std::vector<Oglas> oglasi)
 
 void Oglas::ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID)
 {
+    if (!this->provjeriID(ID)) {
+        std::cout << "[GRESKA] Uneseni ID ne postoji." << std::endl;
+        return;
+    }
     int indexZaIspis;
     for (int i = 0; i < oglasi.size(); i++) {
         if (oglasi[i].getID() == ID) {
@@ -723,6 +729,7 @@ void Oglas::ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID)
                     std::cout << vozila[i].getVrstaGoriva() << "\n";
                 }
             }
+            break;
         }
         case nekretnina: {
             auto tempNekretnina = std::make_shared<Nekretnina>();
@@ -742,6 +749,7 @@ void Oglas::ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID)
                     std::cout << nekretnine[i].getUlica() << "\n";
                 }
             }
+            break;
         }
         case tehnika: {
             auto tempTehnika = std::make_shared<Tehnika>();
@@ -762,6 +770,7 @@ void Oglas::ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID)
                     std::cout << tehnika[i].getOperativniSistem() << "\n";
                 }
             }
+            break;
         }
     }
 }
@@ -773,7 +782,7 @@ bool Oglas::trebaBrisati(int kategorija)
     }
 }
 
-void Oglas::filtrirajPoCijeni(std::vector<Oglas> &oglasi)
+std::string Oglas::filtrirajPoCijeni(std::vector<Oglas> &oglasi)
 {
     int minCijena;
     int maxCijena;
@@ -791,9 +800,10 @@ void Oglas::filtrirajPoCijeni(std::vector<Oglas> &oglasi)
         }
     }
     oglasi = noviVektor;
+    return (std::to_string(minCijena) + " - " + std::to_string(maxCijena));
 }
 
-void Oglas::filtrirajPoKategoriji(std::vector<Oglas> &oglasi)
+std::string Oglas::filtrirajPoKategoriji(std::vector<Oglas> &oglasi)
 {
     int kategorija;
     std::cout << "Unesite broj kategorije koju zelite vidjeti (1 - vozila, 2 - nekretnine, 3 - tehnika): ";
@@ -808,6 +818,7 @@ void Oglas::filtrirajPoKategoriji(std::vector<Oglas> &oglasi)
         }
     }
     oglasi = noviVektor;
+    return std::to_string(kategorija);
 }
 
 void Oglas::sortirajPoCijeniRastuci(std::vector<Oglas> &oglasi)
@@ -832,7 +843,7 @@ void Oglas::sortirajPoCijeniOpadajuci(std::vector<Oglas> &oglasi)
     }
 }
 
-void Oglas::pretragaPoRijeci(std::vector<Oglas> &oglasi)
+std::string Oglas::pretragaPoRijeci(std::vector<Oglas> &oglasi)
 {
     std::string rijec;
     std::cout << "Unesite kljucnu rijec za pretragu: ";
@@ -848,6 +859,7 @@ void Oglas::pretragaPoRijeci(std::vector<Oglas> &oglasi)
         }
     }
     oglasi = noviVektor;
+    return rijec;
 }
 
 void Oglas::unosOglasa()

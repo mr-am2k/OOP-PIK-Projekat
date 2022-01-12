@@ -38,8 +38,8 @@ public:
 	void mojiOglasi(Korisnik& tempKorisnik);
 	void promijeniStanjeOglasa(Korisnik& tempKorisnik);
 	void izbrisiOglas(Korisnik& tempKorisnik);
-	int generisiRandomID();
-	bool provjeriID(int a);
+	int generisiRandomID();  //generise random ID, te svaki oglas dobija random ID
+	bool provjeriID(int a);  //provjerava da li je dati ID već kreiran
 	void ispisOglasa(std::vector<Oglas> oglasi);
 	void ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID);
 	bool trebaBrisati(int kategorija);

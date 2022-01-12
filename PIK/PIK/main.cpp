@@ -19,7 +19,7 @@ int glavniMenu() {
 	std::cout << "\tUnesite vas izbor: ";
 	std::cin >> izbor;
 	if (izbor != 4) return izbor;
-	else {
+	else {  
 		std::cin.clear();
 		std::cin.ignore(100, '\n');
 		return 0;

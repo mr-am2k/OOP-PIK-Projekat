@@ -73,8 +73,8 @@ void Oglas::setStanje()
     {
         std::cout << "Stanje(nedostupno: 1, dostupno: 2): ";
         std::cin >> *izbor;
-        if (!std::cin) {
-            std::cin.clear();
+        if (!std::cin) {    // ova provjera osigurava da korisnik ne moze unijeti string na mjestu na kojem je predvidjen int, ova provjera se nalazi
+            std::cin.clear();       // na svakom mjestu gdje imamo unos varijable tipa int
             std::cin.ignore(100, '\n');
         }
         if (*izbor < 1 || *izbor > 2) std::cout << "Neispravan unos, probajte ponovo!\n";
@@ -643,7 +643,7 @@ int Oglas::generisiRandomID()
     rand();
     int a;
     do {
-        a = rand()%999+1;
+        a = rand()%999+1;    //generisanje random ID
     } while (provjeriID(a));
     return a;
 }
@@ -659,7 +659,7 @@ bool Oglas::provjeriID(int a)
         int kategorijaBr;
         std::string linijaInfo;
         getline(ispis, linijaInfo);
-        while (ispis >> temp->id >> temp->autor >> temp->naslov >> temp->opis >> temp->cijena >> stanjeBr >> kategorijaBr) {
+        while (ispis >> temp->id >> temp->autor >> temp->naslov >> temp->opis >> temp->cijena >> stanjeBr >> kategorijaBr) {  //citanje podataka iz datoteke oglasi.txt
             broj = temp->id;
             temp->stanje = static_cast<Stanje>(stanjeBr);
             temp->kategorija = static_cast<Kategorija>(kategorijaBr);

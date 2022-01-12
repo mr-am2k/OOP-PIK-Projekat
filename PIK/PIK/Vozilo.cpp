@@ -200,7 +200,7 @@ void Vozilo::unosOglasa()
     this->setBoja();
     this->setTip();
     this->setVrstaGoriva();
-
+    //unos podataka u datoteku
     try {
         std::ofstream izlaz("vozila.txt", std::ios::app);
         if (izlaz.is_open()) {
@@ -217,7 +217,7 @@ void Vozilo::unosOglasa()
             izlaz.close();
         }
         else {
-            throw "[IZUZETAK]: Otvaranje datoteke nije uspjelo!\n";
+            throw "[IZUZETAK]: Otvaranje datoteke nije uspjelo!\n";  
         }
     }
     catch (const char* greska) {

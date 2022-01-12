@@ -176,6 +176,7 @@ void Tehnika::unosOglasa()
     this->setProcesor();
     this->setProizvodjac();
     this->setOperativniSistem();
+    //unos podataka u datoteku
     try {
         std::ofstream izlaz("tehnika.txt", std::ios::app);
         if (izlaz.is_open()) {

@@ -184,7 +184,7 @@ void Nekretnina::unosOglasa()
     this->setBrSpratova();
     this->setGrad();
     this->setUlica();
-
+    //unos podataka u datoteku
     try {
         std::ofstream izlaz("nekretnine.txt", std::ios::app);
         if (izlaz.is_open()) {

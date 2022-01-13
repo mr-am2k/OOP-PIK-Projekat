@@ -676,8 +676,8 @@ bool Oglas::provjeriID(int a)
 
 void Oglas::ispisOglasa(std::vector<Oglas> oglasi)
 {
-    std::cout << "ID\tUsername\t\tNaslov\t\t\tOpis\t\t\t\tCijena\t\tStanje\t\tKategorija\n";
-    std::cout << "------------------------------------------------------------------------------------------------------------------------------------\n";
+    std::cout << "ID\tUsername\t\tNaslov\t\t\tOpis\t\t\t\tCijena\t\tStanje\t\t\tKategorija\n";
+    std::cout << "------------------------------------------------------------------------------------------------------------------------------------------------------\n";
     for (int i = 0; i < oglasi.size(); i++) {
         std::cout << oglasi[i].id << "\t";
         if (oglasi[i].autor.size() >= 8) std::cout << oglasi[i].autor << "\t";
@@ -691,11 +691,11 @@ void Oglas::ispisOglasa(std::vector<Oglas> oglasi)
         else if (oglasi[i].opis.size() >= 8 && oglasi[i].opis.size() < 16) std::cout << oglasi[i].opis << "\t\t\t";
         else std::cout << oglasi[i].opis << "\t\t\t\t";
         std::cout << oglasi[i].cijena << "\t\t";
-        std::cout << oglasi[i].stanje << "\t\t";
-        std::cout << oglasi[i].kategorija;
+        std::cout << oglasi[i].getStanjeString() << "\t\t";
+        std::cout << oglasi[i].getKategorijaString();
         std::cout << std::endl;
     }
-    std::cout << "------------------------------------------------------------------------------------------------------------------------------------\n";
+    std::cout << "------------------------------------------------------------------------------------------------------------------------------------------------------\n";
 }
 
 void Oglas::ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID)
@@ -732,7 +732,7 @@ void Oglas::ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID)
                     else std::cout << vozila[i].getBoja() << "\t\t";
                     if (vozila[i].getTip().size() >= 8) std::cout << vozila[i].getTip() << "\t";
                     else std::cout << vozila[i].getTip() << "\t\t";
-                    std::cout << vozila[i].getVrstaGoriva() << "\n";
+                    std::cout << vozila[i].getVrstaGorivaString() << "\n";
                 }
             }
             break;
@@ -747,7 +747,7 @@ void Oglas::ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID)
                 if (nekretnine[i].getID() == oglasi[indexZaIspis].getID())
                 {
                     std::cout << nekretnine[i].getID() << "\t";
-                    std::cout << nekretnine[i].getVrstaNekretine() << "\t";
+                    std::cout << nekretnine[i].getVrstaNekretnineString() << "\t";
                     std::cout << nekretnine[i].getKvadrati() << "\t\t";
                     std::cout << nekretnine[i].getBrSoba() << "\t\t";
                     std::cout << nekretnine[i].getBrSpratova() << "\t\t";
@@ -768,7 +768,7 @@ void Oglas::ispisOglasaDetaljno(std::vector<Oglas> oglasi, int ID)
                 if (tehnika[i].getID() == oglasi[indexZaIspis].getID())
                 {
                     std::cout << tehnika[i].getID() << "\t";
-                    std::cout << tehnika[i].getVrstaTehnike() << "\t";
+                    std::cout << tehnika[i].getVrstaTehnikeString() << "\t";
                     std::cout << tehnika[i].getRam() << "\t";
                     std::cout << tehnika[i].getPohrana() << "\t\t";
                     if (tehnika[i].getProcesor().size() >= 8) std::cout << tehnika[i].getProcesor() << "\t";

@@ -1,5 +1,4 @@
 ID	Godiste		Kilovati	Broj brzina	Kilometraza	Boja		Tip		Vrsta goriva
-245	2015		66		5		111111		crna		limuzina	1
-383	2022		123		5		2		crna		limuzina	2
-237	2015		99		5		145789		zelena		limuzina	2
-202	1999		123		123		1		1		1		1
+300	2013		77		6		221700		siva		lumzina		1
+841	2017		125		9		55000		crna		coupe		1
+

@@ -127,7 +127,7 @@ int main(){
 	HWND console = GetConsoleWindow();
 	RECT r;
 	GetWindowRect(console, &r); //smjestaju se vrijednosti trenutnih dimenzija prozora konzole
-	MoveWindow(console, r.left, r.top, 1200, 600, TRUE); //mijenjaju se vrijednosti duzine i sirine na nove 1200x600
+	MoveWindow(console, r.left, r.top, 1600, 900, TRUE); //mijenjaju se vrijednosti duzine i sirine na nove 1600x900
 
 	Korisnik k;
 	Admin a;

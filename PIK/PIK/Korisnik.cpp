@@ -320,43 +320,19 @@ void Korisnik::dodajOglas()
 
 
 
-std::ostream& operator<<(std::ostream& izlaz, Korisnik& k) 
+std::ostream& operator<<(std::ostream& izlaz, Korisnik& k) //Operator  << sluzi za ispis infomracija o korisniku
 {
-	try {
-		korisnici.clear();
-		std::ifstream ulaz("korisnici.txt");
-		if (ulaz.is_open()) {
-			std::shared_ptr<Korisnik> temp = std::make_shared<Korisnik>();
-			std::string linijaInfo;
-			std::string spolString;
-			std::getline(ulaz, linijaInfo);
-			while (ulaz >> temp->ime >> temp->prezime >> temp->username >> temp->sifra >> temp->email >> temp->brojTelefona >> spolString >> temp->brAktivnihOglasa >> temp->brZavrsenihOglasa) {
-				izlaz << "--------------------------------------------------------------\n";
-				izlaz << "\t\t INFORMACIJE O KORISNIKU \n";
-				izlaz << "--------------------------------------------------------------\n";
-				izlaz << "Ime: " << k.ime << std::endl;
-				izlaz << "Prezime: " << k.prezime << std::endl;
-				izlaz << "Username: " << k.username << std::endl;
-				izlaz << "Sifra: " << k.sifra << std::endl;
-				izlaz << "Email: " << k.email << std::endl;
-				izlaz << "Broj telefona: " << k.brojTelefona << std::endl;
-				izlaz << "Spol: " << k.getSpolString() << std::endl;
-				izlaz << "Broj aktivnih oglasa: " << k.brAktivnihOglasa << std::endl;
-				izlaz << "Broj zavrsenih oglasa: " << k.brZavrsenihOglasa << std::endl;
-				izlaz << "--------------------------------------------------------------\n";
-				return izlaz;
-			}
-			ulaz.close();
-		}
-		else {
-			throw "[IZUZETAK]: Otvaranje datoteke nije uspjelo!\n";
-		}
-	}
-	catch (const char* greska) {
-		std::cout << greska;
-		exit(0);
-	}
-
+	izlaz << "--------------------------------------------------------------\n";
+	izlaz << "\t\t*** INFORMACIJE O KORISNIKU ***\n";
+	izlaz << "--------------------------------------------------------------\n";
+	izlaz << "Ime: " << k.ime << std::endl;
+	izlaz << "Prezime: " << k.prezime << std::endl;
+	izlaz << "Username: " << k.username << std::endl;
+	izlaz << "Sifra: " << k.sifra << std::endl;
+	izlaz << "Email: " << k.email << std::endl;
+	izlaz << "Broj telefona: " << k.brojTelefona << std::endl;
+	izlaz << "Spol: " << k.getSpolString() << std::endl;
+	izlaz << "--------------------------------------------------------------\n";
 	return izlaz;
 }
 

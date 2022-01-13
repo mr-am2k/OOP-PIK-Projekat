@@ -1,4 +1,3 @@
 ID	Vrsta	RAM	Pohrana(GB)	Procesor	Proizvodjac	OS
-550	1	44	666		fd_dgfg_ooo	fsdfsd_oooo_ds	fsdfsd_ggg_34
-437	2	4096	1000		amd_ryzen_3600	hp		windows
-766	2	4096	256		samo_intel_ba	ne_znam		eto_linux
+639	1	16000	1024		AMD_Ryzen_7	ASUS		Windows_10
+800	2	8000	120		Intel_Core_i3	Fighter		Widnows_10

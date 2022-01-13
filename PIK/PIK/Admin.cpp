@@ -144,26 +144,19 @@ void Admin::infoOKorisniku()
 	korisnici = temp->getKorisnike();
 	std::cout << "Unesite username korisnika kojeg zelite pretraziti: ";
 	std::cin >> *tempUsername;
+	auto tempKorisnik = std::make_shared<Korisnik>();
 	for(int i = 0; i<korisnici.size(); i++)
 	{
 		if (tempUsername->compare(korisnici[i].getUsername()) == 0)
 		{
-			std::cout << "Podaci o korisniku: \n";
-			std::cout << "Ime: " << korisnici[i].getIme() << "\n";
-			std::cout << "Prezime: " << korisnici[i].getPrezime()<< "\n";
-			std::cout << "Username: " << korisnici[i].getUsername() << "\n";
-			std::cout << "Sifra: " << korisnici[i].getSifra() << "\n";
-			std::cout << "Email: " << korisnici[i].getEmail() << "\n";
-			std::cout << "Broj telefona: " << korisnici[i].getBrojTelefona() << "\n";
-			std::cout << "Spol: " << korisnici[i].getSpolString() << "\n";
-			std::cout << "Broj aktivnih oglasa: " << korisnici[i].getbrAktivnihOglasa() << "\n";
-			std::cout << "Broj zavrsenih oglasa: " << korisnici[i].getbrZavrsenihOglasa() << "\n";
+			*tempKorisnik = korisnici[i]; // U tempKorisnik spremimo korisnika koji odgovara unesenom username-u, te kasnije pomocu operator << ga ispisujemo
 			break;
 		}
 		else
 		{
 			std::cout << "Username: " << *tempUsername << " nije pronadjen!" << std::endl;
-			break;
+			return;
 		}
 	}
+	std::cout << *tempKorisnik;
 }

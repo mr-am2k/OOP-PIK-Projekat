@@ -1,4 +1,4 @@
 Ime		Prezime		Username	Sifra		Email				Broj telefona	Spol	Aktivni oglasi	Zavrseni oglasi
-Amer		Pasanbegovic	pasha		Amer123!	amer.pasanbegovic.20@size.ba	063/343-3233	musko		0		0
-Ajdin		Bukvic		toreno		Ajdin123!	ajdin.bukvic.20@size.ba		062/323-441	musko		0		0
-Emir		Zambakovic	zexach		Emir123!	emir.zambakovic.20@size.ba	061/322-321	musko		0		0
+Amer		Pasanbegovic	pasha		Amer123!	amer.pasanbegovic.20@size.ba	063/343-3233	musko		2		0
+Ajdin		Bukvic		toreno		Ajdin123!	ajdin.bukvic.20@size.ba		062/323-441	musko		2		0
+Emir		Zambakovic	zexach		Emir123!	emir.zambakovic.20@size.ba	061/322-321	musko		2		0

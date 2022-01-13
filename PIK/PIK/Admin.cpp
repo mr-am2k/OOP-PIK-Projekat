@@ -144,19 +144,14 @@ void Admin::infoOKorisniku()
 	korisnici = temp->getKorisnike();
 	std::cout << "Unesite username korisnika kojeg zelite pretraziti: ";
 	std::cin >> *tempUsername;
-	auto tempKorisnik = std::make_shared<Korisnik>();
+	auto tempBrojac = std::make_shared<int>(0);
 	for(int i = 0; i<korisnici.size(); i++)
 	{
 		if (tempUsername->compare(korisnici[i].getUsername()) == 0)
 		{
-			*tempKorisnik = korisnici[i]; // U tempKorisnik spremimo korisnika koji odgovara unesenom username-u, te kasnije pomocu operator << ga ispisujemo
-			break;
-		}
-		else
-		{
-			std::cout << "Username: " << *tempUsername << " nije pronadjen!" << std::endl;
-			return;
+			std::cout << korisnici[i];
+			*tempBrojac = *tempBrojac + 1;
 		}
 	}
-	std::cout << *tempKorisnik;
+	if(*tempBrojac == 0) std::cout << "Username: " << *tempUsername << " nije pronadjen!" << std::endl;
 }

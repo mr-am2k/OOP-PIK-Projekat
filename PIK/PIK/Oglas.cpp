@@ -428,6 +428,7 @@ void Oglas::promijeniStanjeOglasa(Korisnik& tempKorisnik)
             exit(0);
         }
     }
+
 }
 
 void Oglas::izbrisiOglas(Korisnik& tempKorisnik)
@@ -478,7 +479,7 @@ void Oglas::izbrisiOglas(Korisnik& tempKorisnik)
                 if (*tempID == oglasi[i].getID() && (tempKorisnik.getUsername().compare(oglasi[i].getAutor()) == 0))
                 {
                     promijenjeno = true;
-                    *indexElementaZaBrisanje = i;
+                    *indexElementaZaBrisanje = i; //cuvamo index u vektoru korisnika kojem brisemo oglas da bi kasnije mogli ukloniti oglas i u pomocnim datotekama
                 }
             }
             if (!promijenjeno)
@@ -490,7 +491,7 @@ void Oglas::izbrisiOglas(Korisnik& tempKorisnik)
         {
             if (i != *indexElementaZaBrisanje)
             {
-                noviOglasi.push_back(oglasi[i]);
+                noviOglasi.push_back(oglasi[i]);//U novi vektor spremamo sve oglase osim onog koji trebamo izbrisati
             }
         }
     	std::ofstream izlaz("pomocniOglasi.txt", std::ios::app);

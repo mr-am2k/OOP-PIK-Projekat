@@ -263,6 +263,7 @@ void Korisnik::promijeniSifru()	//poziva setter sifre i mijenja vrijednost sifre
 	std::cout << "Uspjesna izmjena sifre!" << std::endl;
 }
 
+
 void Korisnik::ucitajKorisnike()
 {
 	try {

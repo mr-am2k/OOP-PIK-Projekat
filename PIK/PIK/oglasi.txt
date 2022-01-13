@@ -8,3 +8,4 @@ ID	Username	Naslov				Opis				Cijena		Stanje		Kategorija
 766	toreno		nesto_na_prodaju		polovno_ali_kao_novo		500		2		3
 237	toreno		prodaje_se_auto_neko		full_oprema_ocuvano		30000		2		1
 698	toreno		ggggg				hhhh				1111		1		2
+202	am2k		naslov				sdfa				1231		1		1
